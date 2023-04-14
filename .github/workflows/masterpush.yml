@@ -40,8 +40,7 @@ jobs:
         archive_output: true
 
     # Create HTML
-    - run: find /home/
-    - run: cp -r /home/runner/.local/share/godot/exports/html/ .
+    - run: cp -r /home/runner/work/shelter/shelter/exports/html .
     - run: cp html/shelter.html html/index.html
     - run: find HTML5
     - name: publish page
