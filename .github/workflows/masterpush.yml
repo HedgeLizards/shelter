@@ -1,0 +1,62 @@
+# Whenever a specified branch is pushed, run the job
+on:
+  push:
+    branches:
+      - main
+      - master
+
+jobs:
+  # job id, can be anything
+  export_game:
+    # Always use ubuntu-latest for this action
+    runs-on: ubuntu-latest
+    # Add permission for release creation. Can be made narrower according to your needs
+    permissions: write-all
+    # Job name, can be anything
+    name: Export Game
+    steps:
+      # Always include the checkout step so that
+      # your project is available for Godot to export
+    - name: checkout
+      uses: actions/checkout@v3.3.0
+      with:
+        fetch-depth: 0
+
+    # Set version
+    - run: echo "v0.0.$(git rev-list --count HEAD)" > version.tres
+    - name: get tag from version
+      id: tag_version
+      run: echo "TAG_VERSION=$(cat version.tres)" >> $GITHUB_OUTPUT
+
+    - name: export game
+      id: export
+      # Use latest version (see releases for all versions)
+      uses: firebelley/godot-export@v5.0.0
+      with:
+        # Defining all the required inputs
+        godot_executable_download_url: https://downloads.tuxfamily.org/godotengine/4.0.2/Godot_v4.0.2-stable_linux.x86_64.zip
+        godot_export_templates_download_url: https://downloads.tuxfamily.org/godotengine/4.0.2/Godot_v4.0.2-stable_export_templates.tpz
+        relative_project_path: ./
+        archive_output: true
+
+    # Create HTML
+    - run: cp -r /home/runner/.local/share/godot/exports/html/ .
+    - run: cp html/shelter.html html/index.html
+    - run: find HTML5
+    - name: publish page
+     uses: peaceiris/actions-gh-pages@v3
+     if: ${{ github.ref == 'refs/heads/release' }}
+     with:
+       github_token: ${{ secrets.GITHUB_TOKEN }}
+       publish_dir: ./HTML5
+
+    # Create release
+    - name: create release
+      uses: ncipollo/release-action@v1.12.0
+      with:
+        token: ${{ secrets.GITHUB_TOKEN }}
+        generateReleaseNotes: true
+        replacesArtifacts: true
+        artifacts: ${{ steps.export.outputs.archive_directory }}/*
+        tag: ${{ steps.tag_version.outputs.TAG_VERSION }}
+        commit: ${{ github.ref }}
