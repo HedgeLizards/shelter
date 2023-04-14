@@ -1,7 +1,8 @@
-[gd_scene load_steps=10 format=3 uid="uid://d0ybs7e25b728"]
+[gd_scene load_steps=9 format=3 uid="uid://d0ybs7e25b728"]
 
 [ext_resource type="Shader" path="res://shaders/sky.gdshader" id="1_23ay3"]
 [ext_resource type="Script" path="res://scripts/player.gd" id="1_v42xf"]
+[ext_resource type="PackedScene" uid="uid://b8pc0qberv5le" path="res://scenes/leveltest.tscn" id="2_keimh"]
 [ext_resource type="Texture2D" uid="uid://ypnlftyw5ohh" path="res://assets/stars.png" id="2_ypvou"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_nq0oj"]
@@ -19,11 +20,6 @@ ambient_light_source = 1
 ambient_light_sky_contribution = 0.68
 reflected_light_source = 1
 
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_6rnm6"]
-
-[sub_resource type="BoxMesh" id="BoxMesh_8icn6"]
-size = Vector3(50, 1, 50)
-
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_cylrf"]
 radius = 0.3
 height = 1.8
@@ -33,23 +29,20 @@ height = 1.8
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = SubResource("Environment_qv4gl")
 
-[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
-material_override = SubResource("StandardMaterial3D_6rnm6")
-mesh = SubResource("BoxMesh_8icn6")
-
 [node name="Player" type="CharacterBody3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.876441, 0)
 script = ExtResource("1_v42xf")
+
+[node name="OmniLight3D" type="OmniLight3D" parent="Player"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.26114, 2.61184, -0.564144)
+omni_range = 15.0
 
 [node name="Body" type="CollisionShape3D" parent="Player"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.9, 0)
 shape = SubResource("CapsuleShape3D_cylrf")
 
-[node name="Head" type="Node3D" parent="Player"]
+[node name="Head" type="Camera3D" parent="Player"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.6, 0)
 
-[node name="Camera3D" type="Camera3D" parent="Player/Head"]
-
-[node name="OmniLight3D" type="OmniLight3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.25909, 3.77848, -9.52054)
-omni_range = 15.0
+[node name="leveltest" parent="." instance=ExtResource("2_keimh")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -13.3218, -4.3989, -5.61747)
