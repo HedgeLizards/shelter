@@ -1,9 +1,10 @@
-[gd_scene load_steps=9 format=3 uid="uid://d0ybs7e25b728"]
+[gd_scene load_steps=10 format=3 uid="uid://d0ybs7e25b728"]
 
 [ext_resource type="Shader" path="res://shaders/sky.gdshader" id="1_23ay3"]
 [ext_resource type="Script" path="res://scripts/player.gd" id="1_v42xf"]
-[ext_resource type="PackedScene" uid="uid://b8pc0qberv5le" path="res://scenes/leveltest.tscn" id="2_keimh"]
+[ext_resource type="PackedScene" uid="uid://b1lnk263dkgot" path="res://scenes/leveltest.tscn" id="2_keimh"]
 [ext_resource type="Texture2D" uid="uid://ypnlftyw5ohh" path="res://assets/stars.png" id="2_ypvou"]
+[ext_resource type="PackedScene" uid="uid://0m7qvktw7p2q" path="res://scenes/blizzard_particles.tscn" id="4_j7rgb"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_nq0oj"]
 shader = ExtResource("1_23ay3")
@@ -17,8 +18,12 @@ sky_material = SubResource("ShaderMaterial_nq0oj")
 background_mode = 2
 sky = SubResource("Sky_unhvf")
 ambient_light_source = 1
+ambient_light_color = Color(1, 1, 1, 1)
 ambient_light_sky_contribution = 0.68
 reflected_light_source = 1
+volumetric_fog_enabled = true
+volumetric_fog_density = 0.06
+volumetric_fog_emission = Color(1, 1, 1, 1)
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_cylrf"]
 radius = 0.3
@@ -43,6 +48,9 @@ shape = SubResource("CapsuleShape3D_cylrf")
 
 [node name="Head" type="Camera3D" parent="Player"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.6, 0)
+
+[node name="Node3D" parent="Player" instance=ExtResource("4_j7rgb")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.415039, 2.95254, -0.266551)
 
 [node name="leveltest" parent="." instance=ExtResource("2_keimh")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -13.3218, -4.3989, -5.61747)

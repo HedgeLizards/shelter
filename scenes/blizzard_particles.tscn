@@ -1,0 +1,55 @@
+[gd_scene load_steps=4 format=3 uid="uid://0m7qvktw7p2q"]
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_l6ufn"]
+resource_local_to_scene = true
+emission_shape = 2
+emission_sphere_radius = 8.31
+particle_flag_align_y = true
+direction = Vector3(2.08165e-12, 2.08165e-12, 2.08165e-12)
+spread = 89.63
+gravity = Vector3(2.08165e-12, -100, 2.08165e-12)
+initial_velocity_max = 49.62
+radial_accel_min = -73.42
+radial_accel_max = -35.26
+tangential_accel_min = 100.0
+tangential_accel_max = 100.0
+scale_min = 0.1
+scale_max = 0.2
+turbulence_enabled = true
+turbulence_noise_strength = 19.1
+turbulence_noise_scale = 2.82
+turbulence_noise_speed_random = 2.33
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_0jkyc"]
+depth_draw_mode = 1
+no_depth_test = true
+shading_mode = 0
+disable_ambient_light = true
+point_size = 1.5
+distance_fade_max_distance = 0.0
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_rxje7"]
+resource_local_to_scene = true
+lightmap_size_hint = Vector2i(1, 1)
+material = SubResource("StandardMaterial3D_0jkyc")
+custom_aabb = AABB(2.08165e-12, 2.08165e-12, 2.08165e-12, 2.08165e-12, 2.08165e-12, 2.08165e-12)
+uv2_padding = 0.0
+top_radius = 0.05
+bottom_radius = 0.05
+height = 0.001
+radial_segments = 6
+rings = 1
+
+[node name="Node3D" type="Node3D"]
+
+[node name="GPUParticles3D" type="GPUParticles3D" parent="."]
+transform = Transform3D(1, -3.48787e-16, 3.48787e-16, 3.48787e-16, 1, -3.48787e-16, -3.48787e-16, 3.48787e-16, 1, 0, 0.901068, 0)
+amount = 50000
+lifetime = 0.5
+speed_scale = 0.55
+explosiveness = 0.06
+randomness = 0.49
+fixed_fps = 12
+trail_lifetime = 4.87
+process_material = SubResource("ParticleProcessMaterial_l6ufn")
+draw_pass_1 = SubResource("CylinderMesh_rxje7")
