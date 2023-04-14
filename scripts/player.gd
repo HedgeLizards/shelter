@@ -3,7 +3,7 @@ extends CharacterBody3D
 
 const MOUSE_SENSITIVITY = 0.003
 const speed = 3
-const sprint_speed = 100
+const sprint_speed = 30
 
 
 

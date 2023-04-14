@@ -1,8 +1,25 @@
-[gd_scene load_steps=5 format=3 uid="uid://d0ybs7e25b728"]
+[gd_scene load_steps=10 format=3 uid="uid://d0ybs7e25b728"]
 
+[ext_resource type="Shader" path="res://shaders/sky.gdshader" id="1_23ay3"]
 [ext_resource type="Script" path="res://scripts/player.gd" id="1_v42xf"]
+[ext_resource type="Texture2D" uid="uid://ypnlftyw5ohh" path="res://assets/stars.png" id="2_ypvou"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_nq0oj"]
+shader = ExtResource("1_23ay3")
+shader_parameter/sun_color = Color(1, 0, 0.321569, 1)
+shader_parameter/star_tex = ExtResource("2_ypvou")
+
+[sub_resource type="Sky" id="Sky_unhvf"]
+sky_material = SubResource("ShaderMaterial_nq0oj")
 
 [sub_resource type="Environment" id="Environment_qv4gl"]
+background_mode = 2
+sky = SubResource("Sky_unhvf")
+ambient_light_source = 1
+ambient_light_sky_contribution = 0.68
+reflected_light_source = 1
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_6rnm6"]
 
 [sub_resource type="BoxMesh" id="BoxMesh_8icn6"]
 size = Vector3(50, 1, 50)
@@ -17,6 +34,7 @@ height = 1.8
 environment = SubResource("Environment_qv4gl")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+material_override = SubResource("StandardMaterial3D_6rnm6")
 mesh = SubResource("BoxMesh_8icn6")
 
 [node name="Player" type="CharacterBody3D" parent="."]
@@ -33,9 +51,5 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.6, 0)
 [node name="Camera3D" type="Camera3D" parent="Player/Head"]
 
 [node name="OmniLight3D" type="OmniLight3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.25909, 3, -9.52054)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.25909, 3.77848, -9.52054)
 omni_range = 15.0
-
-[node name="FogVolume" type="FogVolume" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -15.8308)
-size = Vector3(20, 20, 20)
