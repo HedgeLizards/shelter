@@ -3,13 +3,20 @@ extends CharacterBody3D
 const MOUSE_SENSITIVITY = 0.003
 const speed = 3
 const sprint_speed = 100
+const gravity = 15
 
-func _physics_process(_delta):
+var v_speed = 0
+
+func _physics_process(delta):
 	var input_movement = Input.get_vector("left", "right", "forwards", "backwards")
 	var s = speed if not Input.is_action_pressed("sprint") else sprint_speed
-	var movement = (Vector3(input_movement.x, 0, input_movement.y) * s).rotated(Vector3(0, 1, 0), self.rotation.y)
-	movement.y = s * (float(Input.is_action_pressed("up")) - float(Input.is_action_pressed("down")))
-	velocity = movement
+	
+	if is_on_floor():
+		v_speed = 8 if Input.is_action_pressed("jump") else 0
+	else:
+		v_speed -= gravity * delta
+	
+	velocity = Vector3(input_movement.x * s, v_speed, input_movement.y * s).rotated(Vector3(0, 1, 0), self.rotation.y)
 	
 	move_and_slide()
 
