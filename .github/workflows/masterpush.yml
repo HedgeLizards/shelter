@@ -1,9 +1,9 @@
-# Whenever a specified branch is pushed, run the job
+# Whenever a push is made to the master branch then run the job
 on:
   push:
     branches:
-      - main
       - master
+      - main
 
 jobs:
   # job id, can be anything
@@ -44,11 +44,11 @@ jobs:
     - run: cp html/shelter.html html/index.html
     - run: find HTML5
     - name: publish page
-     uses: peaceiris/actions-gh-pages@v3
-     if: ${{ github.ref == 'refs/heads/release' }}
-     with:
-       github_token: ${{ secrets.GITHUB_TOKEN }}
-       publish_dir: ./HTML5
+      uses: peaceiris/actions-gh-pages@v3
+      if: ${{ github.ref == 'refs/heads/release' }}
+      with:
+        github_token: ${{ secrets.GITHUB_TOKEN }}
+        publish_dir: ./HTML5
 
     # Create release
     - name: create release
