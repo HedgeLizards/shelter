@@ -3,6 +3,8 @@
 [ext_resource type="Script" path="res://scripts/player.gd" id="1_v42xf"]
 
 [sub_resource type="Environment" id="Environment_qv4gl"]
+tonemap_mode = 3
+tonemap_white = 7.0
 
 [sub_resource type="BoxMesh" id="BoxMesh_8icn6"]
 size = Vector3(50, 1, 50)
