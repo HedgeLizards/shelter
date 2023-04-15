@@ -4,7 +4,11 @@
 
 [node name="BGM" type="Node3D"]
 
-[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+[node name="MUS_MAIN" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("1_v564h")
-volume_db = -10.0
+volume_db = -20.0
+autoplay = true
+
+[node name="ATMOSPHERE" type="AudioStreamPlayer" parent="."]
+volume_db = -20.0
 autoplay = true

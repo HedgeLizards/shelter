@@ -1,15 +1,16 @@
-[gd_scene load_steps=10 format=3 uid="uid://d0ybs7e25b728"]
+[gd_scene load_steps=11 format=3 uid="uid://d0ybs7e25b728"]
 
 [ext_resource type="Shader" path="res://shaders/sky.gdshader" id="1_23ay3"]
 [ext_resource type="PackedScene" uid="uid://b1lnk263dkgot" path="res://scenes/leveltest.tscn" id="2_keimh"]
 [ext_resource type="Texture2D" uid="uid://ypnlftyw5ohh" path="res://assets/stars.png" id="2_ypvou"]
+[ext_resource type="Script" path="res://scripts/environment.gd" id="3_mo3qo"]
 [ext_resource type="PackedScene" uid="uid://x1xhbme7u44u" path="res://scenes/player.tscn" id="3_nktwx"]
 [ext_resource type="Shader" path="res://shaders/fog.gdshader" id="5_yrd2i"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_nq0oj"]
 shader = ExtResource("1_23ay3")
 shader_parameter/sun_color = Color(1, 0, 0.321569, 1)
-shader_parameter/moon_position = null
+shader_parameter/moon_position = Vector3(0, 1, 0)
 shader_parameter/star_tex = ExtResource("2_ypvou")
 
 [sub_resource type="Sky" id="Sky_unhvf"]
@@ -36,6 +37,7 @@ shader_parameter/emission = Color(0.282353, 0.282353, 0.282353, 1)
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = SubResource("Environment_qv4gl")
+script = ExtResource("3_mo3qo")
 
 [node name="Player" parent="." instance=ExtResource("3_nktwx")]
 
@@ -47,7 +49,8 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -20, 0)
 size = Vector3(200, 100, 200)
 material = SubResource("ShaderMaterial_etj4a")
 
-[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+[node name="Moon" type="DirectionalLight3D" parent="."]
+unique_name_in_owner = true
 transform = Transform3D(1, 0, 0, 0, 0.376046, 0.926601, 0, -0.926601, 0.376046, 0, 38.9419, 0)
 light_color = Color(0.533333, 0.698039, 0.984314, 1)
 light_energy = 0.2
