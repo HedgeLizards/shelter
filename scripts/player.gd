@@ -42,6 +42,12 @@ func _physics_process(delta):
 	
 	$Head/Camera3D/Hand1.position.y = -0.7 + sin(hand_phase) * 0.1
 	$Head/Camera3D/Hand2.position.y = -0.7 - sin(hand_phase) * 0.1
+	# var is_inside
+	# for body in $Head/InsideTest.has_overlapping_areas():
+	# if $Head/InsideTest.overlaps_area(%Cave):
+		# print("in cave")
+	%BlizzardParticles.emitting = not $Head/InsideTest.has_overlapping_areas()
+		
 
 func _input(event):
 	# Capturing/Freeing the cursor

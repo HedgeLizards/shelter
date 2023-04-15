@@ -38,9 +38,7 @@ material = SubResource("StandardMaterial3D_4h0yg")
 size = Vector2(0.05, 0.05)
 orientation = 0
 
-[node name="Node3D" type="Node3D"]
-
-[node name="GPUParticles3D" type="GPUParticles3D" parent="."]
+[node name="GPUParticles3D" type="GPUParticles3D"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.10655, 1.89701, 1.76418)
 cast_shadow = 0
 gi_mode = 0

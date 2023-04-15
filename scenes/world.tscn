@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=3 uid="uid://d0ybs7e25b728"]
+[gd_scene load_steps=12 format=3 uid="uid://d0ybs7e25b728"]
 
 [ext_resource type="Shader" path="res://shaders/sky.gdshader" id="1_23ay3"]
 [ext_resource type="PackedScene" uid="uid://b1lnk263dkgot" path="res://scenes/leveltest.tscn" id="2_keimh"]
@@ -33,6 +33,9 @@ shader = ExtResource("5_yrd2i")
 shader_parameter/color = null
 shader_parameter/emission = Color(0.282353, 0.282353, 0.282353, 1)
 
+[sub_resource type="SphereShape3D" id="SphereShape3D_3xk0v"]
+radius = 8.3386
+
 [node name="World" type="Node3D"]
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
@@ -52,7 +55,17 @@ material = SubResource("ShaderMaterial_etj4a")
 
 [node name="Moon" type="DirectionalLight3D" parent="."]
 unique_name_in_owner = true
-transform = Transform3D(1, 0, 0, 0, 0.376046, 0.926601, 0, -0.926601, 0.376046, 0, 38.9419, 0)
+transform = Transform3D(0.907777, -0.255927, -0.332327, 0, -0.79229, 0.610145, -0.419452, -0.553876, -0.719223, 0, 38.9419, 0)
 light_color = Color(0.533333, 0.698039, 0.984314, 1)
 light_energy = 0.2
 shadow_enabled = true
+
+[node name="Cave" type="Area3D" parent="."]
+unique_name_in_owner = true
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -10.3026, 2.32071, 12.7961)
+collision_layer = 4096
+collision_mask = 4096
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Cave"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.0994709, -1.17341)
+shape = SubResource("SphereShape3D_3xk0v")
