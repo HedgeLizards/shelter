@@ -77,3 +77,6 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1.5, 0)
 stream = SubResource("AudioStreamRandomizer_f1mxl")
 volume_db = -3.0
 max_db = 0.0
+
+[connection signal="body_entered" from="Head/InsideTest" to="." method="_on_inside_test_body_entered"]
+[connection signal="body_exited" from="Head/InsideTest" to="." method="_on_inside_test_body_exited"]

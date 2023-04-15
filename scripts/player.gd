@@ -51,8 +51,17 @@ func _physics_process(delta):
 	# if $Head/InsideTest.overlaps_area(%Cave):
 		# print("in cave")
 	%BlizzardParticles.emitting = not $Head/InsideTest.has_overlapping_areas()
-		
-
+	
+	# When inside, fade out overlay
+	if ($Head/InsideTest.has_overlapping_areas()):
+		$"../CanvasLayer/Frozen".modulate.a -= .25 * delta
+	
+	# When outside, fade in overlay
+	else:
+		$"../CanvasLayer/Frozen".modulate.a += .1 * delta
+	
+	$"../CanvasLayer/Frozen".modulate.a = clamp($"../CanvasLayer/Frozen".modulate.a, 0, 1)
+	
 func _input(event):
 	# Capturing/Freeing the cursor
 	if Input.is_action_just_pressed("escape"):
