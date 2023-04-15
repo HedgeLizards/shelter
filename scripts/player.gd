@@ -1,9 +1,9 @@
 extends CharacterBody3D
 
 const MOUSE_SENSITIVITY = 0.003
-const speed = 3
-const sprint_speed = 30
-const gravity = 15
+const speed = 5
+const sprint_speed = 15
+const gravity = 20
 
 var v_speed = 0
 var head_phase = 0
@@ -15,14 +15,14 @@ func _physics_process(delta):
 	
 	if is_on_floor():
 		if v_speed < 0:
-			$Head/Camera3D.shake(v_speed / -30)
+			$Head/Camera3D.shake(v_speed / -25)
 		
-		v_speed = 8 if Input.is_action_pressed("jump") else 0
+		v_speed = 12 if Input.is_action_pressed("jump") else 0
 	else:
 		v_speed -= gravity * delta
 
 	if Input.is_action_pressed("fly"):
-		v_speed = 5
+		v_speed = 10
 	
 	velocity = Vector3(input_movement.x * s, v_speed, input_movement.y * s).rotated(Vector3(0, 1, 0), self.rotation.y)
 	
@@ -35,8 +35,8 @@ func _physics_process(delta):
 	
 	$Head.position.y = 1.2 + sin(head_phase) * 0.2
 	
-	if (input_movement != Vector2.ZERO and is_on_floor()) or sign(sin(hand_phase)) == sign(sin(hand_phase + s * 2 * delta)):
-		hand_phase = fmod(hand_phase + s * 2 * delta, TAU)
+	if (input_movement != Vector2.ZERO and is_on_floor()) or sign(sin(hand_phase)) == sign(sin(hand_phase + s * delta)):
+		hand_phase = fmod(hand_phase + s * delta, TAU)
 	else:
 		hand_phase = 0
 	
