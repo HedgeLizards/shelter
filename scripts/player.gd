@@ -6,6 +6,7 @@ const sprint_speed = 30
 const gravity = 15
 
 var v_speed = 0
+var phase = 0
 
 func _physics_process(delta):
 	var input_movement = Input.get_vector("left", "right", "forwards", "backwards")
@@ -19,6 +20,13 @@ func _physics_process(delta):
 	velocity = Vector3(input_movement.x * s, v_speed, input_movement.y * s).rotated(Vector3(0, 1, 0), self.rotation.y)
 	
 	move_and_slide()
+	
+	if velocity == Vector3.ZERO or sign(sin(phase)) == sign(sin(phase + 2 * delta)):
+		phase = fmod(phase + 2 * delta, TAU)
+	else:
+		phase = 0
+	
+	$Head.position.y = 1.2 + sin(phase) * 0.2
 
 func _input(event):
 	# Capturing/Freeing the cursor
