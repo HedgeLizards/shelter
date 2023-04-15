@@ -1,6 +1,7 @@
-[gd_scene load_steps=2 format=3 uid="uid://514iq610q8fs"]
+[gd_scene load_steps=3 format=3 uid="uid://514iq610q8fs"]
 
 [ext_resource type="AudioStream" uid="uid://drppueha5ohkv" path="res://assets/sounds/MUS_MAIN.ogg" id="1_v564h"]
+[ext_resource type="AudioStream" uid="uid://b6dui8f5vq4o2" path="res://assets/sounds/ATM_BLIZZARD.ogg" id="2_qrsvm"]
 
 [node name="BGM" type="Node3D"]
 
@@ -10,5 +11,6 @@ volume_db = -20.0
 autoplay = true
 
 [node name="ATMOSPHERE" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("2_qrsvm")
 volume_db = -20.0
 autoplay = true
