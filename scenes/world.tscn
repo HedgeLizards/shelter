@@ -51,7 +51,7 @@ environment = SubResource("Environment_qv4gl")
 script = ExtResource("3_mo3qo")
 
 [node name="Player" parent="." instance=ExtResource("3_nktwx")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -9.72644, 3.2335, 15.2973)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -9.726, 2.33941, 15.297)
 
 [node name="leveltest" parent="." instance=ExtResource("2_keimh")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -13.3218, -4.3989, -5.61747)
