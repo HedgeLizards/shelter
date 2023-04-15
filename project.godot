@@ -72,6 +72,12 @@ fly={
 ]
 }
 
+[layer_names]
+
+3d_physics/layer_1="static"
+3d_physics/layer_2="player"
+3d_physics/layer_3="human"
+
 [rendering]
 
 environment/defaults/default_clear_color=Color(0, 0, 0, 1)
