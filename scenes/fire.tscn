@@ -1,8 +1,15 @@
-[gd_scene load_steps=3 format=3 uid="uid://c6y5r1lcu46r7"]
+[gd_scene load_steps=5 format=3 uid="uid://c6y5r1lcu46r7"]
 
 [ext_resource type="AudioStream" uid="uid://yvcxewmkkkt2" path="res://assets/sounds/SND_FIRE.ogg" id="1_c3tff"]
+[ext_resource type="Shader" path="res://shaders/flames.gdshader" id="2_xko0k"]
 
-[sub_resource type="BoxMesh" id="BoxMesh_8t2hu"]
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_1sb5p"]
+render_priority = 0
+shader = ExtResource("2_xko0k")
+
+[sub_resource type="QuadMesh" id="QuadMesh_a8q3m"]
+material = SubResource("ShaderMaterial_1sb5p")
+size = Vector2(3, 4)
 
 [node name="Fire" type="Node3D"]
 
@@ -11,8 +18,10 @@ stream = ExtResource("1_c3tff")
 autoplay = true
 max_distance = 10.0
 
-[node name="Temp_MeshInstance3D" type="MeshInstance3D" parent="."]
-mesh = SubResource("BoxMesh_8t2hu")
+[node name="Flames" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2, 0)
+cast_shadow = 0
+mesh = SubResource("QuadMesh_a8q3m")
 
 [node name="OmniLight3D" type="OmniLight3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.20109, 0)

@@ -80,4 +80,7 @@ shape = SubResource("SphereShape3D_ulgje")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1.5, 0)
 stream = SubResource("AudioStreamRandomizer_f1mxl")
 attenuation_model = 3
-volume_db = -9.0
+bus = &"Player"
+
+[connection signal="body_entered" from="Head/InsideTest" to="." method="_on_inside_test_body_entered"]
+[connection signal="body_exited" from="Head/InsideTest" to="." method="_on_inside_test_body_exited"]
