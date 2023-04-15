@@ -26,15 +26,14 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.2, 0)
 [node name="Hand1" type="MeshInstance3D" parent="Head"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1, -0.7, -0.9)
 mesh = SubResource("SphereMesh_wknt7")
-skeleton = NodePath("../..")
+skeleton = NodePath("../../..")
 
 [node name="Hand2" type="MeshInstance3D" parent="Head"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1, -0.7, -0.9)
 mesh = SubResource("SphereMesh_wknt7")
-skeleton = NodePath("../..")
+skeleton = NodePath("../../..")
 
 [node name="OmniLight3D" type="OmniLight3D" parent="Head"]
 omni_range = 15.0
 
 [node name="BlizzardParticles" parent="Head" instance=ExtResource("2_1qr6y")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1.2, 0)
