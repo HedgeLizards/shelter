@@ -2,21 +2,21 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://ypnlftyw5ohh"
-path.etc2="res://.godot/imported/stars.png-0cec3e64e602a6d2ff05e29e04abb435.etc2.ctex"
+uid="uid://bdg5und6xwguv"
+path="res://.godot/imported/leveltest_Plane-color.png-8509aa0ba30390cc0da4e82965b944b5.ctex"
 metadata={
-"imported_formats": ["etc2_astc"],
-"vram_texture": true
+"vram_texture": false
 }
+generator_parameters={}
 
 [deps]
 
-source_file="res://assets/stars.png"
-dest_files=["res://.godot/imported/stars.png-0cec3e64e602a6d2ff05e29e04abb435.etc2.ctex"]
+source_file="res://assets/level/leveltest_Plane-color.png"
+dest_files=["res://.godot/imported/leveltest_Plane-color.png-8509aa0ba30390cc0da4e82965b944b5.ctex"]
 
 [params]
 
-compress/mode=2
+compress/mode=0
 compress/high_quality=false
 compress/lossy_quality=0.7
 compress/hdr_compression=1
@@ -32,4 +32,4 @@ process/normal_map_invert_y=false
 process/hdr_as_srgb=false
 process/hdr_clamp_exposure=false
 process/size_limit=0
-detect_3d/compress_to=0
+detect_3d/compress_to=1

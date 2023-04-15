@@ -1,12 +1,11 @@
 [gd_scene load_steps=4 format=3 uid="uid://0m7qvktw7p2q"]
 
 [sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_l6ufn"]
-resource_local_to_scene = true
 emission_shape = 6
 emission_ring_axis = Vector3(2.08165e-12, 1, 2.08165e-12)
 emission_ring_height = 10.0
-emission_ring_radius = 5.0
-emission_ring_inner_radius = 4.0
+emission_ring_radius = 8.0
+emission_ring_inner_radius = 7.0
 particle_flag_align_y = true
 direction = Vector3(2.08165e-12, 2.08165e-12, 2.08165e-12)
 spread = 89.63
@@ -16,42 +15,39 @@ radial_accel_min = -73.42
 radial_accel_max = -35.26
 tangential_accel_min = 100.0
 tangential_accel_max = 100.0
+damping_min = 100.0
+damping_max = 100.0
+angle_min = 720.0
+angle_max = 720.0
 scale_min = 0.1
-scale_max = 0.2
+scale_max = 0.5
 turbulence_enabled = true
 turbulence_noise_strength = 19.1
 turbulence_noise_scale = 2.82
 turbulence_noise_speed_random = 2.33
 
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_0jkyc"]
-depth_draw_mode = 1
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_4h0yg"]
+cull_mode = 2
 no_depth_test = true
-shading_mode = 0
-disable_ambient_light = true
-point_size = 1.5
+disable_receive_shadows = true
+distance_fade_min_distance = 1338.46
 distance_fade_max_distance = 0.0
 
-[sub_resource type="CylinderMesh" id="CylinderMesh_rxje7"]
-resource_local_to_scene = true
-lightmap_size_hint = Vector2i(1, 1)
-material = SubResource("StandardMaterial3D_0jkyc")
-custom_aabb = AABB(2.08165e-12, 2.08165e-12, 2.08165e-12, 2.08165e-12, 2.08165e-12, 2.08165e-12)
-uv2_padding = 0.0
-top_radius = 0.05
-bottom_radius = 0.05
-height = 0.001
-radial_segments = 6
-rings = 1
+[sub_resource type="QuadMesh" id="QuadMesh_ko87k"]
+material = SubResource("StandardMaterial3D_4h0yg")
+size = Vector2(0.05, 0.05)
+orientation = 0
 
 [node name="Node3D" type="Node3D"]
 
 [node name="GPUParticles3D" type="GPUParticles3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.10655, 1.89701, 1.76418)
+cast_shadow = 0
+gi_mode = 0
 amount = 50000
-lifetime = 0.5
-speed_scale = 0.55
-explosiveness = 0.06
-randomness = 0.49
-fixed_fps = 12
+speed_scale = 0.5
+randomness = 0.16
+interpolate = false
 trail_lifetime = 4.87
 process_material = SubResource("ParticleProcessMaterial_l6ufn")
-draw_pass_1 = SubResource("CylinderMesh_rxje7")
+draw_pass_1 = SubResource("QuadMesh_ko87k")
