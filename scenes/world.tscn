@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=3 uid="uid://d0ybs7e25b728"]
+[gd_scene load_steps=9 format=3 uid="uid://d0ybs7e25b728"]
 
 [ext_resource type="Shader" path="res://shaders/sky.gdshader" id="1_23ay3"]
 [ext_resource type="PackedScene" uid="uid://b1lnk263dkgot" path="res://scenes/leveltest.tscn" id="2_keimh"]
@@ -21,8 +21,12 @@ ambient_light_color = Color(1, 1, 1, 1)
 ambient_light_sky_contribution = 0.68
 reflected_light_source = 1
 volumetric_fog_enabled = true
-volumetric_fog_density = 0.06
+volumetric_fog_density = 0.0
 volumetric_fog_emission = Color(1, 1, 1, 1)
+
+[sub_resource type="FogMaterial" id="FogMaterial_r144f"]
+density = 0.2
+emission = Color(1, 1, 1, 1)
 
 [node name="World" type="Node3D"]
 
@@ -33,3 +37,8 @@ environment = SubResource("Environment_qv4gl")
 
 [node name="leveltest" parent="." instance=ExtResource("2_keimh")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -13.3218, -4.3989, -5.61747)
+
+[node name="FogVolume" type="FogVolume" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -10, 0)
+size = Vector3(200, 20, 200)
+material = SubResource("FogMaterial_r144f")
