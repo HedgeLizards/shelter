@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=3 uid="uid://x1xhbme7u44u"]
+[gd_scene load_steps=13 format=3 uid="uid://x1xhbme7u44u"]
 
 [ext_resource type="Script" path="res://scripts/player.gd" id="1_t26ob"]
 [ext_resource type="PackedScene" uid="uid://0m7qvktw7p2q" path="res://scenes/blizzard_particles.tscn" id="2_1qr6y"]
@@ -7,6 +7,7 @@
 [ext_resource type="AudioStream" uid="uid://dhtgoguw1h5xg" path="res://assets/sounds/SND_STEP_2.wav" id="5_2k7sk"]
 [ext_resource type="AudioStream" uid="uid://cflddqpml1kkr" path="res://assets/sounds/SND_STEP_3.wav" id="6_i8l7s"]
 [ext_resource type="AudioStream" uid="uid://bntws7tl4xyix" path="res://assets/sounds/SND_STEP_4.wav" id="7_seo0r"]
+[ext_resource type="PackedScene" uid="uid://c1ikghu42fp3s" path="res://scenes/yeti_hand.tscn" id="8_pjkmb"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_cylrf"]
 radius = 0.3
@@ -36,6 +37,9 @@ stream_3/weight = 1.0
 
 [node name="Player" type="CharacterBody3D"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.5, 0)
+collision_layer = 2
+collision_mask = 7
+input_ray_pickable = false
 script = ExtResource("1_t26ob")
 
 [node name="Body" type="CollisionShape3D" parent="."]
@@ -49,9 +53,13 @@ script = ExtResource("2_1tmbw")
 
 [node name="Hand1" type="MeshInstance3D" parent="Head/Camera3D"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.9, -0.7, -0.9)
+visible = false
 cast_shadow = 0
 mesh = SubResource("SphereMesh_wknt7")
 skeleton = NodePath("../../../..")
+
+[node name="hand_rigged2" parent="Head/Camera3D/Hand1" instance=ExtResource("8_pjkmb")]
+transform = Transform3D(-0.039599, 0.218526, -0.975027, 0.839544, 0.536422, 0.0861278, -0.541847, 0.815167, 0.204704, 0.11064, -0.285707, 0.397873)
 
 [node name="Hand2" type="MeshInstance3D" parent="Head/Camera3D"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.9, -0.7, -0.9)
@@ -59,24 +67,29 @@ cast_shadow = 0
 mesh = SubResource("SphereMesh_wknt7")
 skeleton = NodePath("../../../..")
 
+[node name="hand_rigged" parent="Head/Camera3D/Hand2" instance=ExtResource("8_pjkmb")]
+transform = Transform3D(-0.0415711, -0.231679, 0.971904, 0.837533, 0.522332, 0.160335, -0.544803, 0.820667, 0.172325, -0.0231032, -0.258069, 0.327683)
+
 [node name="OmniLight3D" type="OmniLight3D" parent="Head/Camera3D"]
 omni_range = 15.0
 
 [node name="BlizzardParticles" parent="Head/Camera3D" instance=ExtResource("2_1qr6y")]
 unique_name_in_owner = true
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.368755, 0, -0.869051)
 
 [node name="InsideTest" type="Area3D" parent="Head"]
 collision_layer = 4096
 collision_mask = 4096
+monitorable = false
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Head/InsideTest"]
 shape = SubResource("SphereShape3D_ulgje")
 
-[node name="StepSound" type="AudioStreamPlayer3D" parent="."]
+[node name="StepSounds" type="AudioStreamPlayer3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1.5, 0)
 stream = SubResource("AudioStreamRandomizer_f1mxl")
-volume_db = -3.0
-max_db = 0.0
+attenuation_model = 3
+bus = &"Player"
 
 [connection signal="body_entered" from="Head/InsideTest" to="." method="_on_inside_test_body_entered"]
 [connection signal="body_exited" from="Head/InsideTest" to="." method="_on_inside_test_body_exited"]

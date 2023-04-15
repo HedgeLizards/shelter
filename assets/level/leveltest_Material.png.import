@@ -3,9 +3,9 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://d2dt8k2v8toeb"
-path.s3tc="res://.godot/imported/leveltest_Material.png-0f13bfdf48decfae79f1f306d9d144a6.s3tc.ctex"
+path.etc2="res://.godot/imported/leveltest_Material.png-0f13bfdf48decfae79f1f306d9d144a6.etc2.ctex"
 metadata={
-"imported_formats": ["s3tc_bptc"],
+"imported_formats": ["etc2_astc"],
 "vram_texture": true
 }
 generator_parameters={}
@@ -13,7 +13,7 @@ generator_parameters={}
 [deps]
 
 source_file="res://assets/level/leveltest_Material.png"
-dest_files=["res://.godot/imported/leveltest_Material.png-0f13bfdf48decfae79f1f306d9d144a6.s3tc.ctex"]
+dest_files=["res://.godot/imported/leveltest_Material.png-0f13bfdf48decfae79f1f306d9d144a6.etc2.ctex"]
 
 [params]
 
