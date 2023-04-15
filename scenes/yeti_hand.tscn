@@ -160,6 +160,9 @@ bones/14/rotation = Quaternion(-0.347187, -0.133151, -0.326955, 0.868811)
 bones/15/rotation = Quaternion(0.225452, -0.054574, -0.0824319, 0.969225)
 bones/16/rotation = Quaternion(0.220926, 0.188018, 0.140866, 0.946572)
 
+[node name="yeti-hand" parent="Arm/Skeleton3D" index="0"]
+cast_shadow = 0
+
 [node name="AnimationPlayer" parent="." index="1"]
 autoplay = "ArmAction"
 libraries = {
