@@ -1,4 +1,4 @@
-[gd_scene load_steps=16 format=3 uid="uid://d0ybs7e25b728"]
+[gd_scene load_steps=17 format=3 uid="uid://d0ybs7e25b728"]
 
 [ext_resource type="Shader" path="res://shaders/sky.gdshader" id="1_23ay3"]
 [ext_resource type="PackedScene" uid="uid://b1lnk263dkgot" path="res://scenes/leveltest.tscn" id="2_keimh"]
@@ -7,7 +7,7 @@
 [ext_resource type="PackedScene" uid="uid://x1xhbme7u44u" path="res://scenes/player.tscn" id="3_nktwx"]
 [ext_resource type="Shader" path="res://shaders/fog.gdshader" id="5_yrd2i"]
 [ext_resource type="PackedScene" uid="uid://c6y5r1lcu46r7" path="res://scenes/fire.tscn" id="7_aggce"]
-[ext_resource type="PackedScene" path="res://scenes/human.tscn" id="8_ktiaq"]
+[ext_resource type="PackedScene" uid="uid://c6sj87wf6aicq" path="res://scenes/human.tscn" id="8_ktiaq"]
 [ext_resource type="PackedScene" uid="uid://514iq610q8fs" path="res://scenes/bgm.tscn" id="8_wvepe"]
 [ext_resource type="Texture2D" uid="uid://86xbv588trlq" path="res://assets/textures/frost.png" id="9_jkdtj"]
 
@@ -26,11 +26,12 @@ sky = SubResource("Sky_unhvf")
 ambient_light_source = 1
 ambient_light_color = Color(1, 1, 1, 1)
 ambient_light_sky_contribution = 0.68
-reflected_light_source = 1
+tonemap_white = 5.2
+glow_bloom = 0.55
 volumetric_fog_enabled = true
-volumetric_fog_density = 0.0
+volumetric_fog_albedo = Color(0.219608, 0.219608, 0.219608, 1)
 volumetric_fog_emission = Color(1, 1, 1, 1)
-volumetric_fog_sky_affect = 0.5
+volumetric_fog_ambient_inject = 0.25
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_etj4a"]
 shader = ExtResource("5_yrd2i")
@@ -39,6 +40,9 @@ shader_parameter/emission = Color(0.282353, 0.282353, 0.282353, 1)
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_aqr61"]
 radius = 8.12869
+
+[sub_resource type="FogMaterial" id="FogMaterial_mcypa"]
+density = -8.0
 
 [node name="World" type="Node3D"]
 
@@ -54,6 +58,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -13.3218, -4.3989, -5.61747)
 
 [node name="FogVolume" type="FogVolume" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -20, 0)
+visible = false
 size = Vector3(200, 100, 200)
 material = SubResource("ShaderMaterial_etj4a")
 
@@ -94,3 +99,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -11.1437, 0.5929, 2.19014)
 
 [node name="Back of Cave" type="Node3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -8.57009, 3.20363, 15.6701)
+
+[node name="FogVolume2" type="FogVolume" parent="."]
+transform = Transform3D(6.15606, 0, 0, 0, 6.00086, 0, 0, 0, 6.40759, -9.65639, 3.03635, 11.8756)
+material = SubResource("FogMaterial_mcypa")
