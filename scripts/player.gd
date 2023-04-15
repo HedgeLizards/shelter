@@ -15,6 +15,9 @@ func _physics_process(delta):
 		v_speed = 8 if Input.is_action_pressed("jump") else 0
 	else:
 		v_speed -= gravity * delta
+
+	if Input.is_action_pressed("fly"):
+		v_speed = 5
 	
 	velocity = Vector3(input_movement.x * s, v_speed, input_movement.y * s).rotated(Vector3(0, 1, 0), self.rotation.y)
 	
