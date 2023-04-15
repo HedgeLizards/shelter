@@ -1,4 +1,4 @@
-[gd_scene load_steps=16 format=3 uid="uid://d0ybs7e25b728"]
+[gd_scene load_steps=17 format=3 uid="uid://d0ybs7e25b728"]
 
 [ext_resource type="Shader" path="res://shaders/sky.gdshader" id="1_23ay3"]
 [ext_resource type="PackedScene" uid="uid://b1lnk263dkgot" path="res://scenes/leveltest.tscn" id="2_keimh"]
@@ -26,11 +26,12 @@ sky = SubResource("Sky_unhvf")
 ambient_light_source = 1
 ambient_light_color = Color(1, 1, 1, 1)
 ambient_light_sky_contribution = 0.68
-reflected_light_source = 1
+tonemap_white = 5.2
+glow_bloom = 0.55
 volumetric_fog_enabled = true
-volumetric_fog_density = 0.0
+volumetric_fog_albedo = Color(0.219608, 0.219608, 0.219608, 1)
 volumetric_fog_emission = Color(1, 1, 1, 1)
-volumetric_fog_sky_affect = 0.5
+volumetric_fog_ambient_inject = 0.25
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_etj4a"]
 shader = ExtResource("5_yrd2i")
@@ -40,6 +41,9 @@ shader_parameter/emission = Color(0.282353, 0.282353, 0.282353, 1)
 [sub_resource type="SphereShape3D" id="SphereShape3D_aqr61"]
 radius = 8.12869
 
+[sub_resource type="FogMaterial" id="FogMaterial_mcypa"]
+density = -8.0
+
 [node name="World" type="Node3D"]
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
@@ -47,14 +51,14 @@ environment = SubResource("Environment_qv4gl")
 script = ExtResource("3_mo3qo")
 
 [node name="Player" parent="." instance=ExtResource("3_nktwx")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -9.72644, 0.826608, 10.5773)
-audio_transition_speed = 1000
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -9.72644, 3.2335, 15.2973)
 
 [node name="leveltest" parent="." instance=ExtResource("2_keimh")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -13.3218, -4.3989, -5.61747)
 
 [node name="FogVolume" type="FogVolume" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -20, 0)
+visible = false
 size = Vector3(200, 100, 200)
 material = SubResource("ShaderMaterial_etj4a")
 
@@ -66,7 +70,7 @@ light_energy = 0.2
 shadow_enabled = true
 
 [node name="Fire" parent="." instance=ExtResource("7_aggce")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -10.288, -0.696363, 5.25466)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -10.288, -0.696363, 7.81827)
 
 [node name="BGM" parent="." instance=ExtResource("8_wvepe")]
 
@@ -92,3 +96,10 @@ expand_mode = 1
 
 [node name="Human" parent="." instance=ExtResource("8_ktiaq")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -11.1437, 0.5929, 2.19014)
+
+[node name="Back of Cave" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -8.57009, 3.20363, 15.6701)
+
+[node name="FogVolume2" type="FogVolume" parent="."]
+transform = Transform3D(6.15606, 0, 0, 0, 6.00086, 0, 0, 0, 6.40759, -9.65639, 3.03635, 11.8756)
+material = SubResource("FogMaterial_mcypa")

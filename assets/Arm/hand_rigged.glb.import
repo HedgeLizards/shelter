@@ -3,7 +3,7 @@
 importer="scene"
 importer_version=1
 type="PackedScene"
-uid="uid://b5wuj4bxyfxq3"
+uid="uid://bamgt1flreeg"
 path="res://.godot/imported/hand_rigged.glb-7a10051e777c7674f863fc96eb3028fa.scn"
 
 [deps]
@@ -32,9 +32,9 @@ _subresources={
 "animations": {
 "ArmAction": {
 "save_to_file/enabled": true,
-"save_to_file/keep_custom_tracks": true,
-"save_to_file/path": "",
-"settings/loop_mode": 1,
+"save_to_file/keep_custom_tracks": "",
+"save_to_file/path": "res://assets/animations/arm_anim.res",
+"settings/loop_mode": 0,
 "slice_1/end_frame": 0,
 "slice_1/loop_mode": 0,
 "slice_1/name": "",
@@ -1831,7 +1831,7 @@ _subresources={
 }
 },
 "meshes": {
-"hand_rigged_yeti-hand": {
+"hand_rigged_yeti-hand001": {
 "generate/lightmap_uv": 0,
 "generate/lods": 0,
 "generate/shadow_meshes": 0,
@@ -1839,7 +1839,7 @@ _subresources={
 "lods/normal_split_angle": 25.0,
 "save_to_file/enabled": true,
 "save_to_file/make_streamable": "",
-"save_to_file/path": ""
+"save_to_file/path": "res://assets/Arm/arm_tex.res"
 }
 }
 }

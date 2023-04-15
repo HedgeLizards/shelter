@@ -42,6 +42,7 @@ jobs:
     # Create HTML
     - run: cp -r /home/runner/work/shelter/shelter/exports/html .
     - run: cp html/shelter.html html/index.html
+    - run: find /home
     - name: publish page
       uses: peaceiris/actions-gh-pages@v3
       with:
