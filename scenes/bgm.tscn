@@ -1,14 +1,14 @@
 [gd_scene load_steps=3 format=3 uid="uid://514iq610q8fs"]
 
-[ext_resource type="AudioStream" uid="uid://drppueha5ohkv" path="res://assets/sounds/MUS_MAIN.ogg" id="1_v564h"]
+[ext_resource type="AudioStream" uid="uid://dho422mgujqji" path="res://assets/sounds/MUS_MAIN_WALK.ogg" id="1_vnc0n"]
 [ext_resource type="AudioStream" uid="uid://b6dui8f5vq4o2" path="res://assets/sounds/ATM_BLIZZARD.ogg" id="2_qrsvm"]
 
 [node name="BGM" type="Node3D"]
 
-[node name="MUS_MAIN" type="AudioStreamPlayer" parent="."]
-stream = ExtResource("1_v564h")
+[node name="MUS_MAIN_WALK" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("1_vnc0n")
 autoplay = true
-bus = &"Music"
+bus = &"Music_Walk"
 
 [node name="ATMOSPHERE" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("2_qrsvm")

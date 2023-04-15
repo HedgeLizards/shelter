@@ -54,7 +54,7 @@ func _physics_process(delta):
 	# for body in $Head/InsideTest.has_overlapping_areas():
 	# if $Head/InsideTest.overlaps_area(%Cave):
 		# print("in cave")
-	%BlizzardParticles.emitting = not $Head/InsideTest.has_overlapping_areas()
+	#%BlizzardParticles.emitting = not $Head/InsideTest.has_overlapping_areas()
 	
 	var distance = self.global_position.distance_to($"../Back of Cave".global_position)
 	low_pass_filter.cutoff_hz = 2 ** distance

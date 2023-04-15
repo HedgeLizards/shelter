@@ -13,7 +13,7 @@ var health = 3
 
 func search_player():
 	if $RayCast3D.global_position.distance_to(player.global_position) <= $Flashlight/SpotLight3D.spot_range:
-		if $RayCast3D.global_position.direction_to(player.global_position).dot(transform.basis.z) < 0:
+		if $RayCast3D.global_position.direction_to(player.global_position).dot(transform.basis.z) < -0.3:
 			$RayCast3D.target_position = (player.global_position - $RayCast3D.global_position).rotated(Vector3.UP, -rotation.y)
 			$RayCast3D.force_raycast_update()
 			
