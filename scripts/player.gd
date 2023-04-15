@@ -5,7 +5,7 @@ const speed = 5
 const sprint_speed = 15
 const gravity = 20
 
-var v_speed = 0
+var v_speed = 0.0
 var head_phase = 0
 var hand_phase = 0
 
