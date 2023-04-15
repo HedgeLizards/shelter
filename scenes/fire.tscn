@@ -13,7 +13,7 @@ shader = ExtResource("2_xko0k")
 [node name="AudioStreamPlayer3D" type="AudioStreamPlayer3D" parent="."]
 stream = ExtResource("1_c3tff")
 autoplay = true
-max_distance = 10.0
+max_distance = 20.0
 
 [node name="Flames" type="MeshInstance3D" parent="."]
 transform = Transform3D(1.333, 0, 0, 0, 4, 0, 0, 0, 1.333, 0, 2, 0)
