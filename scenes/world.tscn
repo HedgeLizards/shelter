@@ -47,6 +47,7 @@ script = ExtResource("3_mo3qo")
 
 [node name="Player" parent="." instance=ExtResource("3_nktwx")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -9.72644, 0.826608, 10.5773)
+audio_transition_speed = 1000
 
 [node name="leveltest" parent="." instance=ExtResource("2_keimh")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -13.3218, -4.3989, -5.61747)

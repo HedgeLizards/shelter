@@ -60,15 +60,15 @@ func _physics_process(delta):
 	# When inside, fade out overlay
 	if ($Head/InsideTest.has_overlapping_areas()):
 		$"../CanvasLayer/Frozen".modulate.a -= .25 * delta
-		low_pass_filter.cutoff_hz -= audio_transition_speed * delta
+		low_pass_filter.cutoff_hz -= (audio_transition_speed * 4) * delta
 	
 	# When outside, fade in overlay
 	else:
-		$"../CanvasLayer/Frozen".modulate.a += .1 * delta
+		$"../CanvasLayer/Frozen".modulate.a += .025 * delta
 		low_pass_filter.cutoff_hz += audio_transition_speed * delta
 	
 	$"../CanvasLayer/Frozen".modulate.a = clamp($"../CanvasLayer/Frozen".modulate.a, 0, 1)
-	low_pass_filter.cutoff_hz = clamp(low_pass_filter.cutoff_hz, 250, 20500)
+	low_pass_filter.cutoff_hz = clamp(low_pass_filter.cutoff_hz, 250, 10000)
 	
 func _input(event):
 	# Capturing/Freeing the cursor
