@@ -1,0 +1,21 @@
+[remap]
+
+importer="wavefront_obj"
+importer_version=1
+type="Mesh"
+uid="uid://pyf4i4vyj7cl"
+path="res://.godot/imported/firemesh.obj-649b2c4bab40e0ddd8168a0d377e7101.mesh"
+
+[deps]
+
+files=["res://.godot/imported/firemesh.obj-649b2c4bab40e0ddd8168a0d377e7101.mesh"]
+
+source_file="res://assets/firemesh.obj"
+dest_files=["res://.godot/imported/firemesh.obj-649b2c4bab40e0ddd8168a0d377e7101.mesh", "res://.godot/imported/firemesh.obj-649b2c4bab40e0ddd8168a0d377e7101.mesh"]
+
+[params]
+
+generate_tangents=true
+scale_mesh=Vector3(1, 1, 1)
+offset_mesh=Vector3(0, 0, 0)
+optimize_mesh=true
