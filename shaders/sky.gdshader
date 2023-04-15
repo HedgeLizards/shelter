@@ -10,7 +10,7 @@ void sky() {
 // 	vec3 base_color = vec3(0,0,0);
 	//float stardist = clamp(1.0-distance(fract(skypos * 8.0), vec2(0.5, 0.5))*32.0, 0.0, 1.0);
 	//base_color = mix(base_color, vec3(1.0, 1.0, 1.0), stardist);
-	vec3 base_color = texture(star_tex, skypos).xyz;
+	vec3 base_color = texture(star_tex, skypos/2.0).xyz;
 	vec3 moon_color = vec3(1,1,1);
 	float moon_distance = (dot(EYEDIR, normalize(moon_position))-0.9995)*10000.0;
 	COLOR = mix(base_color, moon_color, clamp(moon_distance, 0, 1));

@@ -40,14 +40,13 @@ jobs:
         archive_output: true
 
     # Create HTML
-    - run: cp -r /home/runner/work/shelter/shelter/exports/html .
-    - run: cp html/shelter.html html/index.html
-    - run: find /home
+    - run: cp -r /home/runner/.local/share/godot/builds/Web/ .
+    - run: cp Web/shelter.html Web/index.html
     - name: publish page
       uses: peaceiris/actions-gh-pages@v3
       with:
         github_token: ${{ secrets.GITHUB_TOKEN }}
-        publish_dir: ./html
+        publish_dir: ./Web
 
     # Create release
     - name: create release
