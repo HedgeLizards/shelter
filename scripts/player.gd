@@ -9,6 +9,11 @@ var v_speed = 0.0
 var head_phase = 0
 var hand_phase = 0
 
+var low_pass_filter = AudioServer.get_bus_effect(1, 0)
+
+@export
+var audio_transition_speed = 4000
+
 func _physics_process(delta):
 	var input_movement = Input.get_vector("left", "right", "forwards", "backwards")
 	var s = speed if not Input.is_action_pressed("sprint") else sprint_speed
@@ -55,12 +60,15 @@ func _physics_process(delta):
 	# When inside, fade out overlay
 	if ($Head/InsideTest.has_overlapping_areas()):
 		$"../CanvasLayer/Frozen".modulate.a -= .25 * delta
+		low_pass_filter.cutoff_hz -= audio_transition_speed * delta
 	
 	# When outside, fade in overlay
 	else:
 		$"../CanvasLayer/Frozen".modulate.a += .1 * delta
+		low_pass_filter.cutoff_hz += audio_transition_speed * delta
 	
 	$"../CanvasLayer/Frozen".modulate.a = clamp($"../CanvasLayer/Frozen".modulate.a, 0, 1)
+	low_pass_filter.cutoff_hz = clamp(low_pass_filter.cutoff_hz, 250, 20500)
 	
 func _input(event):
 	# Capturing/Freeing the cursor

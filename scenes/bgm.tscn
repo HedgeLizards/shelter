@@ -14,3 +14,4 @@ autoplay = true
 stream = ExtResource("2_qrsvm")
 volume_db = -12.0
 autoplay = true
+bus = &"Atmosphere"
