@@ -14,6 +14,9 @@ func _physics_process(delta):
 	var s = speed if not Input.is_action_pressed("sprint") else sprint_speed
 	
 	if is_on_floor():
+		if v_speed < 0:
+			$Head/Camera3D.shake(v_speed / -30)
+		
 		v_speed = 8 if Input.is_action_pressed("jump") else 0
 	else:
 		v_speed -= gravity * delta
@@ -37,8 +40,8 @@ func _physics_process(delta):
 	else:
 		hand_phase = 0
 	
-	$Head/Hand1.position.y = -0.7 + sin(hand_phase) * 0.1
-	$Head/Hand2.position.y = -0.7 - sin(hand_phase) * 0.1
+	$Head/Camera3D/Hand1.position.y = -0.7 + sin(hand_phase) * 0.1
+	$Head/Camera3D/Hand2.position.y = -0.7 - sin(hand_phase) * 0.1
 
 func _input(event):
 	# Capturing/Freeing the cursor
