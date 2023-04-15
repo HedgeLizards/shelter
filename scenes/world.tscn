@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=3 uid="uid://d0ybs7e25b728"]
+[gd_scene load_steps=14 format=3 uid="uid://d0ybs7e25b728"]
 
 [ext_resource type="Shader" path="res://shaders/sky.gdshader" id="1_23ay3"]
 [ext_resource type="PackedScene" uid="uid://b1lnk263dkgot" path="res://scenes/leveltest.tscn" id="2_keimh"]
@@ -35,6 +35,9 @@ shader = ExtResource("5_yrd2i")
 shader_parameter/color = null
 shader_parameter/emission = Color(0.282353, 0.282353, 0.282353, 1)
 
+[sub_resource type="SphereShape3D" id="SphereShape3D_aqr61"]
+radius = 8.12869
+
 [node name="World" type="Node3D"]
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
@@ -63,3 +66,12 @@ shadow_enabled = true
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -10.288, -0.271068, 5.25466)
 
 [node name="BGM" parent="." instance=ExtResource("8_wvepe")]
+
+[node name="Cave" type="Area3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -9.75529, 2.88727, 12.2574)
+collision_layer = 4096
+collision_mask = 4096
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Cave"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.631648)
+shape = SubResource("SphereShape3D_aqr61")
