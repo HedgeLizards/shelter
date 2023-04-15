@@ -1,7 +1,8 @@
-[gd_scene load_steps=5 format=3 uid="uid://bnr8mvbm0ea3q"]
+[gd_scene load_steps=6 format=3 uid="uid://x1xhbme7u44u"]
 
 [ext_resource type="Script" path="res://scripts/player.gd" id="1_t26ob"]
 [ext_resource type="PackedScene" uid="uid://0m7qvktw7p2q" path="res://scenes/blizzard_particles.tscn" id="2_1qr6y"]
+[ext_resource type="Script" path="res://scripts/camera_3d.gd" id="2_1tmbw"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_cylrf"]
 radius = 0.3
@@ -20,20 +21,23 @@ script = ExtResource("1_t26ob")
 [node name="Body" type="CollisionShape3D" parent="."]
 shape = SubResource("CapsuleShape3D_cylrf")
 
-[node name="Head" type="Camera3D" parent="."]
+[node name="Head" type="Node3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.2, 0)
 
-[node name="Hand1" type="MeshInstance3D" parent="Head"]
+[node name="Camera3D" type="Camera3D" parent="Head"]
+script = ExtResource("2_1tmbw")
+
+[node name="Hand1" type="MeshInstance3D" parent="Head/Camera3D"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1, -0.7, -0.9)
 mesh = SubResource("SphereMesh_wknt7")
-skeleton = NodePath("../../..")
+skeleton = NodePath("../../../..")
 
-[node name="Hand2" type="MeshInstance3D" parent="Head"]
+[node name="Hand2" type="MeshInstance3D" parent="Head/Camera3D"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1, -0.7, -0.9)
 mesh = SubResource("SphereMesh_wknt7")
-skeleton = NodePath("../../..")
+skeleton = NodePath("../../../..")
 
-[node name="OmniLight3D" type="OmniLight3D" parent="Head"]
+[node name="OmniLight3D" type="OmniLight3D" parent="Head/Camera3D"]
 omni_range = 15.0
 
-[node name="BlizzardParticles" parent="Head" instance=ExtResource("2_1qr6y")]
+[node name="BlizzardParticles" parent="Head/Camera3D" instance=ExtResource("2_1qr6y")]

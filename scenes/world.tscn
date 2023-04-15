@@ -4,7 +4,7 @@
 [ext_resource type="PackedScene" uid="uid://b1lnk263dkgot" path="res://scenes/leveltest.tscn" id="2_keimh"]
 [ext_resource type="Texture2D" uid="uid://ypnlftyw5ohh" path="res://assets/stars.png" id="2_ypvou"]
 [ext_resource type="Script" path="res://scripts/environment.gd" id="3_mo3qo"]
-[ext_resource type="PackedScene" uid="uid://bnr8mvbm0ea3q" path="res://scenes/player.tscn" id="3_nktwx"]
+[ext_resource type="PackedScene" uid="uid://x1xhbme7u44u" path="res://scenes/player.tscn" id="3_nktwx"]
 [ext_resource type="Shader" path="res://shaders/fog.gdshader" id="5_yrd2i"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_nq0oj"]
