@@ -30,7 +30,7 @@ func _physics_process(delta):
 	if Input.is_action_pressed("fly"):
 		v_speed = 10
 	
-	velocity = Vector3(input_movement.x * s, v_speed, input_movement.y * s).rotated(Vector3(0, 1, 0), self.rotation.y)
+	velocity = Vector3(input_movement.x * s, v_speed, input_movement.y * s).rotated(Vector3.UP, rotation.y)
 	
 	move_and_slide()
 	

@@ -39,10 +39,10 @@ light_energy = 16.0
 light_volumetric_fog_energy = 10.0
 spot_range = 20.0
 
-[node name="Sword" type="Node3D" parent="."]
+[node name="Gun" type="Node3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.3, 0, -0.25)
 
-[node name="MeshInstance3D" type="MeshInstance3D" parent="Sword"]
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Gun"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.05, 0.55, -0.05)
 mesh = SubResource("BoxMesh_2rxik")
 skeleton = NodePath("../..")
