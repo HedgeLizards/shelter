@@ -31,7 +31,7 @@ func _physics_process(delta):
 	
 	move_and_slide()
 	
-	get_tree().call_group("humans", "search_player", self)
+	get_tree().call_group("humans", "search_player")
 	
 	if (input_movement == Vector2.ZERO and is_on_floor()) or sign(sin(head_phase)) == sign(sin(head_phase + 2 * delta)):
 		head_phase = fmod(head_phase + 2 * delta, TAU)
