@@ -3,7 +3,7 @@
 [ext_resource type="Shader" path="res://shaders/sky.gdshader" id="1_23ay3"]
 [ext_resource type="PackedScene" uid="uid://b1lnk263dkgot" path="res://scenes/leveltest.tscn" id="2_keimh"]
 [ext_resource type="Texture2D" uid="uid://ypnlftyw5ohh" path="res://assets/stars.png" id="2_ypvou"]
-[ext_resource type="PackedScene" uid="uid://bnr8mvbm0ea3q" path="res://scenes/player.tscn" id="3_nktwx"]
+[ext_resource type="PackedScene" uid="uid://bp4nu24pop61" path="res://scenes/player.tscn" id="3_nktwx"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_nq0oj"]
 shader = ExtResource("1_23ay3")
