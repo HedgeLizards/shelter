@@ -46,10 +46,10 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.2, 0)
 script = ExtResource("2_1tmbw")
 
 [node name="Hand1" parent="Head/Camera3D" instance=ExtResource("8_pjkmb")]
-transform = Transform3D(-0.039599, 0.218526, -0.975027, 0.839544, 0.536422, 0.0861278, -0.541847, 0.815167, 0.204704, -0.78936, -0.985707, -0.502127)
+transform = Transform3D(-0.039599, 0.218526, -0.975027, 0.839544, 0.536421, 0.0861278, -0.541847, 0.815167, 0.204704, -0.79, -0.99, -0.5)
 
 [node name="Hand2" parent="Head/Camera3D" instance=ExtResource("8_pjkmb")]
-transform = Transform3D(-0.0415711, -0.231679, 0.971904, 0.837533, 0.522332, 0.160335, -0.544803, 0.820667, 0.172325, 0.876897, -0.958069, -0.572317)
+transform = Transform3D(0.0406836, -0.218748, 0.974933, 0.839373, 0.536802, 0.0854169, -0.54203, 0.814858, 0.205451, 0.79, -0.99, -0.5)
 
 [node name="OmniLight3D" type="OmniLight3D" parent="Head/Camera3D"]
 light_volumetric_fog_energy = 0.0
