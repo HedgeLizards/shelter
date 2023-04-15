@@ -1,0 +1,15 @@
+[gd_scene load_steps=3 format=3 uid="uid://c6y5r1lcu46r7"]
+
+[ext_resource type="AudioStream" uid="uid://dfgtg50wbndfm" path="res://assets/sounds/SND_FIRE.wav" id="1_pj318"]
+
+[sub_resource type="BoxMesh" id="BoxMesh_8t2hu"]
+
+[node name="Fire" type="Node3D"]
+
+[node name="AudioStreamPlayer3D" type="AudioStreamPlayer3D" parent="."]
+stream = ExtResource("1_pj318")
+autoplay = true
+max_distance = 10.0
+
+[node name="Temp_MeshInstance3D" type="MeshInstance3D" parent="."]
+mesh = SubResource("BoxMesh_8t2hu")
