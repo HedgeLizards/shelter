@@ -1,3 +1,14 @@
-[gd_scene format=3 uid="uid://cxjvbgav8s7as"]
+[gd_scene load_steps=4 format=3 uid="uid://cxjvbgav8s7as"]
+
+[ext_resource type="PackedScene" uid="uid://d0ybs7e25b728" path="res://scenes/world.tscn" id="1_sip6j"]
+[ext_resource type="PackedScene" uid="uid://514iq610q8fs" path="res://scenes/bgm.tscn" id="4_0akkx"]
+[ext_resource type="PackedScene" uid="uid://c6y5r1lcu46r7" path="res://scenes/fire.tscn" id="6_hchuk"]
 
 [node name="Test Sound" type="Node3D"]
+
+[node name="World" parent="." instance=ExtResource("1_sip6j")]
+
+[node name="BGM" parent="." instance=ExtResource("4_0akkx")]
+
+[node name="Fire" parent="." instance=ExtResource("6_hchuk")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -10.7065, -0.0818517, 4.7127)
