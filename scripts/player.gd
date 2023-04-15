@@ -6,7 +6,8 @@ const sprint_speed = 30
 const gravity = 15
 
 var v_speed = 0
-var phase = 0
+var head_phase = 0
+var hand_phase = 0
 
 func _physics_process(delta):
 	var input_movement = Input.get_vector("left", "right", "forwards", "backwards")
@@ -24,12 +25,20 @@ func _physics_process(delta):
 	
 	move_and_slide()
 	
-	if velocity == Vector3.ZERO or sign(sin(phase)) == sign(sin(phase + 2 * delta)):
-		phase = fmod(phase + 2 * delta, TAU)
+	if (input_movement == Vector2.ZERO and is_on_floor()) or sign(sin(head_phase)) == sign(sin(head_phase + 2 * delta)):
+		head_phase = fmod(head_phase + 2 * delta, TAU)
 	else:
-		phase = 0
+		head_phase = 0
 	
-	$Head.position.y = 1.2 + sin(phase) * 0.2
+	$Head.position.y = 1.2 + sin(head_phase) * 0.2
+	
+	if (input_movement != Vector2.ZERO and is_on_floor()) or sign(sin(hand_phase)) == sign(sin(hand_phase + s * 2 * delta)):
+		hand_phase = fmod(hand_phase + s * 2 * delta, TAU)
+	else:
+		hand_phase = 0
+	
+	$Head/Hand1.position.y = -0.7 + sin(hand_phase) * 0.1
+	$Head/Hand2.position.y = -0.7 - sin(hand_phase) * 0.1
 
 func _input(event):
 	# Capturing/Freeing the cursor
