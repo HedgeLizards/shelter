@@ -29,11 +29,13 @@ script = ExtResource("2_1tmbw")
 
 [node name="Hand1" type="MeshInstance3D" parent="Head/Camera3D"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.9, -0.7, -0.9)
+cast_shadow = 0
 mesh = SubResource("SphereMesh_wknt7")
 skeleton = NodePath("../../../..")
 
 [node name="Hand2" type="MeshInstance3D" parent="Head/Camera3D"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.9, -0.7, -0.9)
+cast_shadow = 0
 mesh = SubResource("SphereMesh_wknt7")
 skeleton = NodePath("../../../..")
 
