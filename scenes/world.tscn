@@ -51,7 +51,7 @@ environment = SubResource("Environment_qv4gl")
 script = ExtResource("3_mo3qo")
 
 [node name="Player" parent="." instance=ExtResource("3_nktwx")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -9.72644, 3.2335, 15.2973)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -9.726, 2.33941, 15.297)
 
 [node name="leveltest" parent="." instance=ExtResource("2_keimh")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -13.3218, -4.3989, -5.61747)
@@ -93,8 +93,9 @@ grow_vertical = 2
 texture = ExtResource("9_jkdtj")
 expand_mode = 1
 
-[node name="Human" parent="." instance=ExtResource("8_ktiaq")]
+[node name="Human" parent="." node_paths=PackedStringArray("player") instance=ExtResource("8_ktiaq")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -11.1437, 0.5929, 2.19014)
+player = NodePath("../Player")
 
 [node name="Back of Cave" type="Node3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -8.57009, 3.20363, 15.6701)

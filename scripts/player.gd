@@ -27,11 +27,11 @@ func _physics_process(delta):
 	if Input.is_action_pressed("fly"):
 		v_speed = 10
 	
-	velocity = Vector3(input_movement.x * s, v_speed, input_movement.y * s).rotated(Vector3(0, 1, 0), self.rotation.y)
+	velocity = Vector3(input_movement.x * s, v_speed, input_movement.y * s).rotated(Vector3.UP, rotation.y)
 	
 	move_and_slide()
 	
-	get_tree().call_group("humans", "search_player", self)
+	get_tree().call_group("humans", "search_player")
 	
 	if (input_movement == Vector2.ZERO and is_on_floor()) or sign(sin(head_phase)) == sign(sin(head_phase + 2 * delta)):
 		head_phase = fmod(head_phase + 2 * delta, TAU)

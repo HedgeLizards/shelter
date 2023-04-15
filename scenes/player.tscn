@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=3 uid="uid://x1xhbme7u44u"]
+[gd_scene load_steps=12 format=3 uid="uid://x1xhbme7u44u"]
 
 [ext_resource type="Script" path="res://scripts/player.gd" id="1_t26ob"]
 [ext_resource type="PackedScene" uid="uid://0m7qvktw7p2q" path="res://scenes/blizzard_particles.tscn" id="2_1qr6y"]
@@ -12,12 +12,6 @@
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_cylrf"]
 radius = 0.3
 height = 3.0
-
-[sub_resource type="SphereMesh" id="SphereMesh_wknt7"]
-radius = 0.125
-height = 0.25
-radial_segments = 32
-rings = 16
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_ulgje"]
 radius = 0.1
@@ -51,23 +45,11 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.2, 0)
 [node name="Camera3D" type="Camera3D" parent="Head"]
 script = ExtResource("2_1tmbw")
 
-[node name="Hand1" type="MeshInstance3D" parent="Head/Camera3D"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.9, -0.7, -0.9)
-cast_shadow = 0
-mesh = SubResource("SphereMesh_wknt7")
-skeleton = NodePath("../../../..")
+[node name="Hand1" parent="Head/Camera3D" instance=ExtResource("8_pjkmb")]
+transform = Transform3D(-0.039599, 0.218526, -0.975027, 0.839544, 0.536422, 0.0861278, -0.541847, 0.815167, 0.204704, -0.78936, -0.985707, -0.502127)
 
-[node name="hand_rigged2" parent="Head/Camera3D/Hand1" instance=ExtResource("8_pjkmb")]
-transform = Transform3D(-0.039599, 0.218526, -0.975027, 0.839544, 0.536422, 0.0861278, -0.541847, 0.815167, 0.204704, 0.11064, -0.285707, 0.397873)
-
-[node name="Hand2" type="MeshInstance3D" parent="Head/Camera3D"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.9, -0.7, -0.9)
-cast_shadow = 0
-mesh = SubResource("SphereMesh_wknt7")
-skeleton = NodePath("../../../..")
-
-[node name="hand_rigged" parent="Head/Camera3D/Hand2" instance=ExtResource("8_pjkmb")]
-transform = Transform3D(-0.0415711, -0.231679, 0.971904, 0.837533, 0.522332, 0.160335, -0.544803, 0.820667, 0.172325, -0.0231032, -0.258069, 0.327683)
+[node name="Hand2" parent="Head/Camera3D" instance=ExtResource("8_pjkmb")]
+transform = Transform3D(-0.0415711, -0.231679, 0.971904, 0.837533, 0.522332, 0.160335, -0.544803, 0.820667, 0.172325, 0.876897, -0.958069, -0.572317)
 
 [node name="OmniLight3D" type="OmniLight3D" parent="Head/Camera3D"]
 light_volumetric_fog_energy = 0.0
