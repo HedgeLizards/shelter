@@ -15,7 +15,8 @@ func _physics_process(delta):
 	
 	if is_on_floor():
 		if v_speed < 0:
-			$Head/Camera3D.shake(v_speed / -25)
+			$Head/Camera3D.shake(v_speed / -30)
+			$StepSound.play()
 		
 		v_speed = 12 if Input.is_action_pressed("jump") else 0
 	else:
@@ -36,6 +37,9 @@ func _physics_process(delta):
 	$Head.position.y = 1.2 + sin(head_phase) * 0.2
 	
 	if (input_movement != Vector2.ZERO and is_on_floor()) or sign(sin(hand_phase)) == sign(sin(hand_phase + s * delta)):
+		if (hand_phase <= 0.5 * PI and hand_phase + s * delta >= 0.5 * PI) or (hand_phase <= 1.5 * PI and hand_phase + s * delta >= 1.5 * PI):
+			$StepSound.play()
+		
 		hand_phase = fmod(hand_phase + s * delta, TAU)
 	else:
 		hand_phase = 0
