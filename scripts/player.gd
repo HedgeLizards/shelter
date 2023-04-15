@@ -11,9 +11,6 @@ var hand_phase = 0
 
 var low_pass_filter = AudioServer.get_bus_effect(1, 0)
 
-@export
-var audio_transition_speed = 4000
-
 func _physics_process(delta):
 	var input_movement = Input.get_vector("left", "right", "forwards", "backwards")
 	var s = speed if not Input.is_action_pressed("sprint") else sprint_speed
@@ -59,18 +56,19 @@ func _physics_process(delta):
 		# print("in cave")
 	%BlizzardParticles.emitting = not $Head/InsideTest.has_overlapping_areas()
 	
-	# When inside, fade out overlay
+	var distance = self.global_position.distance_to($"../Back of Cave".global_position)
+	low_pass_filter.cuitoff_hz = 2 ** distance
+	low_pass_filter.cutoff_hz = clamp(low_pass_filter.cutoff_hz, 250, 20500)
+	
+	# When inside, fade out frozen overlay
 	if ($Head/InsideTest.has_overlapping_areas()):
 		$"../CanvasLayer/Frozen".modulate.a -= .25 * delta
-		low_pass_filter.cutoff_hz -= (audio_transition_speed * 4) * delta
 	
-	# When outside, fade in overlay
+	# When outside, fade in the frozen overlay
 	else:
 		$"../CanvasLayer/Frozen".modulate.a += .025 * delta
-		low_pass_filter.cutoff_hz += audio_transition_speed * delta
 	
 	$"../CanvasLayer/Frozen".modulate.a = clamp($"../CanvasLayer/Frozen".modulate.a, 0, 1)
-	low_pass_filter.cutoff_hz = clamp(low_pass_filter.cutoff_hz, 250, 10000)
 	
 func _input(event):
 	# Capturing/Freeing the cursor
