@@ -63,7 +63,7 @@ light_energy = 0.2
 shadow_enabled = true
 
 [node name="Fire" parent="." instance=ExtResource("7_aggce")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -10.288, -0.271068, 5.25466)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -10.288, -0.696363, 5.25466)
 
 [node name="BGM" parent="." instance=ExtResource("8_wvepe")]
 
