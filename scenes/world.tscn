@@ -75,8 +75,10 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -10.288, -0.696363, 7.81827)
 
 [node name="Cave" type="Area3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -9.75529, 2.88727, 12.2574)
-collision_layer = 4096
-collision_mask = 4096
+collision_layer = 8
+collision_mask = 0
+input_ray_pickable = false
+monitoring = false
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Cave"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.631648)

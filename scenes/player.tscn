@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=3 uid="uid://x1xhbme7u44u"]
+[gd_scene load_steps=13 format=3 uid="uid://x1xhbme7u44u"]
 
 [ext_resource type="Script" path="res://scripts/player.gd" id="1_t26ob"]
 [ext_resource type="PackedScene" uid="uid://0m7qvktw7p2q" path="res://scenes/blizzard_particles.tscn" id="2_1qr6y"]
@@ -15,6 +15,9 @@ height = 3.0
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_ulgje"]
 radius = 0.1
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_q2e73"]
+size = Vector3(2, 3, 1.5)
 
 [sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_f1mxl"]
 streams_count = 4
@@ -60,12 +63,23 @@ unique_name_in_owner = true
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.368755, 0, -0.869051)
 
 [node name="InsideTest" type="Area3D" parent="Head"]
-collision_layer = 4096
-collision_mask = 4096
+collision_layer = 0
+collision_mask = 8
+input_ray_pickable = false
 monitorable = false
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Head/InsideTest"]
 shape = SubResource("SphereShape3D_ulgje")
+
+[node name="SlashArea" type="Area3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -1.05)
+collision_layer = 0
+collision_mask = 4
+input_ray_pickable = false
+monitorable = false
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="SlashArea"]
+shape = SubResource("BoxShape3D_q2e73")
 
 [node name="StepSounds" type="AudioStreamPlayer3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1.5, 0)

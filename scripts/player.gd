@@ -100,3 +100,6 @@ func slash():
 	tween.tween_property($Head/Camera3D/Hand1, "rotation:z", deg_to_rad(-122.6), 0.2)
 	tween.tween_property($Head/Camera3D/Hand2, "rotation:y", deg_to_rad(78.1), 0.2)
 	tween.tween_property($Head/Camera3D/Hand2, "rotation:z", deg_to_rad(57.4), 0.2)
+	
+	for body in $SlashArea.get_overlapping_bodies():
+		body.hit()
