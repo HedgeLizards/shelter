@@ -41,7 +41,7 @@ orientation = 0
 [node name="Node3D" type="Node3D"]
 
 [node name="GPUParticles3D" type="GPUParticles3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.10655, 1.89701, 1.76418)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.368755, 2.08165e-12, -0.869051)
 cast_shadow = 0
 gi_mode = 0
 amount = 50000
