@@ -9,7 +9,6 @@ var v_speed = 0.0
 var head_phase = 0
 var hand_phase = 0
 var tween
-var low_pass_filter = AudioServer.get_bus_effect(1, 0)
 var was_jumping = false
 var health = 1.0
 
@@ -78,7 +77,9 @@ func _physics_process(delta):
 	$Head/Camera3D/Hand1.position.y = -0.7 + sin(hand_phase) * 0.1
 	$Head/Camera3D/Hand2.position.y = -0.7 - sin(hand_phase) * 0.1
 	
+	# Mechanic needs revision
 	var distance = self.global_position.distance_to($"../Back of Cave".global_position)
+	var low_pass_filter = AudioServer.get_bus_effect(1, 0)
 	low_pass_filter.cutoff_hz = 2 ** distance
 	low_pass_filter.cutoff_hz = clamp(low_pass_filter.cutoff_hz, 800, 20500)
 	
@@ -109,8 +110,10 @@ func _physics_process(delta):
 		
 	if was_jumping and not is_on_floor() :
 		bgm.crossfade_buses(bgm.JUMP,4)
-	elif sprinting or engaged:
+	elif sprinting and !engaged:
 		bgm.crossfade_buses(bgm.RUN,4)
+	elif engaged:
+		bgm.crossfade_buses(bgm.COMBAT,4)
 	else:
 		bgm.crossfade_buses(bgm.WALK,4)
 	

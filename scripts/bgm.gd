@@ -3,12 +3,14 @@ extends Node3D
 #var current_bus_index = AudioServer.get_bus_index("Music_Walk")
 var new_bus_index
 
+const STEALTH = "Music_Stealth"
 const WALK = "Music_Walk"
 const RUN = "Music_Run"
+const COMBAT = "Music_Combat"
 const JUMP = "Music_Jump"
 
 
-var tracks = [WALK, RUN, JUMP]
+var tracks = [STEALTH, WALK, RUN, COMBAT, JUMP]
 var fadein_duration = 0.1
 var fadeout_duration = 4
 var current_track = WALK
