@@ -59,6 +59,7 @@ func _physics_process(delta):
 
 func shoot():
 	# play gunshot sound and hurt player
+	player.hit()
 	
 	camera_3d.shake(0.5)
 	
