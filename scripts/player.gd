@@ -1,6 +1,7 @@
 extends CharacterBody3D
 
 const MOUSE_SENSITIVITY = 0.003
+const stealth_speed = 3
 const speed = 8
 const sprint_speed = 24
 const gravity = 90
@@ -10,6 +11,7 @@ var head_phase = 0
 var hand_phase = 0
 var tween
 var was_jumping = false
+var is_stealth = false;
 var health = 1.0
 
 signal health_changed
@@ -23,7 +25,15 @@ func _physics_process(delta):
 	
 	var input_movement = Input.get_vector("left", "right", "forwards", "backwards")
 	var sprinting = Input.is_action_pressed("sprint")
-	var s = speed if not sprinting else sprint_speed
+	var s #= speed if not sprinting else sprint_speed
+	
+	if sprinting:
+		s = sprint_speed
+		is_stealth = false
+	elif is_stealth:
+		s = stealth_speed
+	else:
+		s = speed
 	
 	if is_on_floor():
 		if v_speed < 0:
@@ -45,9 +55,14 @@ func _physics_process(delta):
 #			$"../BGM".crossfade_buses("Music_Jump", 4)
 			$SND_JUMP.play()
 			was_jumping = true
+			is_stealth = false
 			v_speed = 90
 		else:
 			v_speed = 0
+			
+		if Input.is_action_just_pressed("stealth"):
+			is_stealth = !is_stealth
+			print(is_stealth)
 		
 	else:
 		v_speed -= gravity * delta
@@ -64,7 +79,13 @@ func _physics_process(delta):
 	else:
 		head_phase = 0
 	
-	$Head.position.y = 1.2 + sin(head_phase) * 0.2
+	# Changes the position of the head based on is_stealth
+	if is_stealth:
+		$Head.position.y = 0.1 + sin(head_phase) * 0.2
+	else: 
+		$Head.position.y = 1.2 + sin(head_phase) * 0.2
+		
+	#print($Head.position.y)
 	
 	if (input_movement != Vector2.ZERO and is_on_floor()) or sign(sin(hand_phase)) == sign(sin(hand_phase + s * delta)):
 		if (hand_phase <= 0.5 * PI and hand_phase + s * delta >= 0.5 * PI) or (hand_phase <= 1.5 * PI and hand_phase + s * delta >= 1.5 * PI):
@@ -78,10 +99,10 @@ func _physics_process(delta):
 	$Head/Camera3D/Hand2.position.y = -0.7 - sin(hand_phase) * 0.1
 	
 	# Mechanic needs revision
-	var distance = self.global_position.distance_to($"../Back of Cave".global_position)
-	var low_pass_filter = AudioServer.get_bus_effect(1, 0)
-	low_pass_filter.cutoff_hz = 2 ** distance
-	low_pass_filter.cutoff_hz = clamp(low_pass_filter.cutoff_hz, 800, 20500)
+	#var distance = self.global_position.distance_to($"../Back of Cave".global_position)
+	#var low_pass_filter = AudioServer.get_bus_effect(1, 0)
+	#low_pass_filter.cutoff_hz = 2 ** distance
+	#low_pass_filter.cutoff_hz = clamp(low_pass_filter.cutoff_hz, 800, 20500)
 	
 	# When inside, fade out frozen overlay
 	if ($Head/InsideTest.has_overlapping_areas()):
@@ -110,12 +131,19 @@ func _physics_process(delta):
 		
 	if was_jumping and not is_on_floor() :
 		bgm.crossfade_buses(bgm.JUMP,4)
-	elif sprinting and !engaged:
+		bgm.mute_atmosphere(false)
+	elif sprinting and not engaged:
 		bgm.crossfade_buses(bgm.RUN,4)
+		bgm.mute_atmosphere(false)
 	elif engaged:
 		bgm.crossfade_buses(bgm.COMBAT,4)
+		bgm.mute_atmosphere(false)
+	elif is_stealth and not engaged:
+		bgm.crossfade_buses(bgm.STEALTH, 4)
+		bgm.mute_atmosphere(true)
 	else:
 		bgm.crossfade_buses(bgm.WALK,4)
+		bgm.mute_atmosphere(false)
 	
 	if health < 1.0:
 		health += delta / 10

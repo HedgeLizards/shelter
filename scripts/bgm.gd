@@ -17,6 +17,9 @@ var current_track = WALK
 
 var diff = 50
 
+var atmosphere = AudioServer.get_bus_index("Atmosphere")
+var atmosphere_muted = false
+
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	for track in tracks:
@@ -34,9 +37,23 @@ func _process(delta):
 		# print(("* " if track == current_track else "  ") + track + " " + str(index) +  " " + str(volume) + " " + str(new_volume))
 		AudioServer.set_bus_volume_db(index, new_volume)
 	# print("")
-
-			
-		
+	
+	# Change this code to be interpolating, right now it's instant
+	if atmosphere_muted:
+		AudioServer.set_bus_volume_db(atmosphere, -20)
+		var low_pass_filter = AudioServer.get_bus_effect(atmosphere, 0)
+		low_pass_filter.cutoff_hz = 1200
+		low_pass_filter = AudioServer.get_bus_effect(AudioServer.get_bus_index("Player"), 0)
+		low_pass_filter.cutoff_hz = 1200
+	
+	# Change this code to be interpolating, right now it's instant
+	else: 
+		AudioServer.set_bus_volume_db(atmosphere, -12)
+		var low_pass_filter = AudioServer.get_bus_effect(atmosphere, 0)
+		low_pass_filter.cutoff_hz = 20500
+		low_pass_filter = AudioServer.get_bus_effect(AudioServer.get_bus_index("Player"), 0)
+		low_pass_filter.cutoff_hz = 20500
+	
 	delta * rotation
 
 func crossfade_buses(to_bus_name : String, duration: float):
@@ -63,3 +80,6 @@ func crossfade_buses(to_bus_name : String, duration: float):
 
 #func set_volume2(value):
 #	AudioServer.set_bus_volume_db(new_bus_index, value)
+
+func mute_atmosphere(mute : bool):
+	atmosphere_muted = mute

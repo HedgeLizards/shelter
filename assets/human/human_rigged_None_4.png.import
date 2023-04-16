@@ -3,9 +3,9 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://bibe4xpuq3m86"
-path.etc2="res://.godot/imported/human_rigged_None_4.png-f1c03da1be436adfc54457f7d9feba52.etc2.ctex"
+path.s3tc="res://.godot/imported/human_rigged_None_4.png-f1c03da1be436adfc54457f7d9feba52.s3tc.ctex"
 metadata={
-"imported_formats": ["etc2_astc"],
+"imported_formats": ["s3tc_bptc"],
 "vram_texture": true
 }
 generator_parameters={}
@@ -13,7 +13,7 @@ generator_parameters={}
 [deps]
 
 source_file="res://assets/human/human_rigged_None_4.png"
-dest_files=["res://.godot/imported/human_rigged_None_4.png-f1c03da1be436adfc54457f7d9feba52.etc2.ctex"]
+dest_files=["res://.godot/imported/human_rigged_None_4.png-f1c03da1be436adfc54457f7d9feba52.s3tc.ctex"]
 
 [params]
 

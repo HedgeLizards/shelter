@@ -1,16 +1,19 @@
-[gd_resource type="AudioBusLayout" load_steps=2 format=3 uid="uid://dpeeq3n3pmixh"]
+[gd_resource type="AudioBusLayout" load_steps=3 format=3 uid="uid://dpeeq3n3pmixh"]
 
 [sub_resource type="AudioEffectLowPassFilter" id="AudioEffectLowPassFilter_pt3ru"]
 resource_name = "LowPassFilter"
 cutoff_hz = 250.0
 resonance = 0.8
 
+[sub_resource type="AudioEffectLowPassFilter" id="AudioEffectLowPassFilter_id4yk"]
+resource_name = "LowPassFilter"
+
 [resource]
 bus/1/name = &"Atmosphere"
 bus/1/solo = false
 bus/1/mute = false
 bus/1/bypass_fx = false
-bus/1/volume_db = -6.25101
+bus/1/volume_db = -12.4611
 bus/1/send = &"Master"
 bus/1/effect/0/effect = SubResource("AudioEffectLowPassFilter_pt3ru")
 bus/1/effect/0/enabled = true
@@ -50,6 +53,8 @@ bus/7/mute = false
 bus/7/bypass_fx = false
 bus/7/volume_db = -4.24723
 bus/7/send = &"Master"
+bus/7/effect/0/effect = SubResource("AudioEffectLowPassFilter_id4yk")
+bus/7/effect/0/enabled = true
 bus/8/name = &"Enemy"
 bus/8/solo = false
 bus/8/mute = false

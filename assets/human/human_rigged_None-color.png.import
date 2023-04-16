@@ -3,16 +3,16 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://csapucfsiejrs"
-path.etc2="res://.godot/imported/human_rigged_None-color.png-47e6cfb4cd14b84cf3df676beb387597.etc2.ctex"
+path.s3tc="res://.godot/imported/human_rigged_None-color.png-47e6cfb4cd14b84cf3df676beb387597.s3tc.ctex"
 metadata={
-"imported_formats": ["etc2_astc"],
+"imported_formats": ["s3tc_bptc"],
 "vram_texture": true
 }
 
 [deps]
 
 source_file="res://assets/human/human_rigged_None-color.png"
-dest_files=["res://.godot/imported/human_rigged_None-color.png-47e6cfb4cd14b84cf3df676beb387597.etc2.ctex"]
+dest_files=["res://.godot/imported/human_rigged_None-color.png-47e6cfb4cd14b84cf3df676beb387597.s3tc.ctex"]
 
 [params]
 
