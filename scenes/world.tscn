@@ -28,11 +28,11 @@ sky = SubResource("Sky_unhvf")
 ambient_light_source = 1
 ambient_light_color = Color(1, 1, 1, 1)
 ambient_light_sky_contribution = 0.68
-tonemap_white = 5.2
+tonemap_white = 7.0
 glow_bloom = 0.55
 fog_enabled = true
 fog_light_color = Color(0, 0, 0, 1)
-fog_density = 0.005
+fog_density = 0.006
 fog_sky_affect = 0.0
 volumetric_fog_enabled = true
 volumetric_fog_density = 0.0
@@ -74,7 +74,7 @@ transform = Transform3D(-0.999668, 0, 0.0257582, 0, 1, 0, -0.0257582, 0, -0.9996
 unique_name_in_owner = true
 transform = Transform3D(1, 0, 0, 0, -0.617489, 0.786579, 0, -0.786579, -0.617489, 0, 91.6888, 0)
 light_color = Color(0.533333, 0.698039, 0.984314, 1)
-light_energy = 0.2
+light_energy = 0.4
 shadow_enabled = true
 
 [node name="Fire" parent="." instance=ExtResource("7_aggce")]
