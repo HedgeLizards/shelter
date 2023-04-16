@@ -56,16 +56,16 @@ density = -8.0
 environment = SubResource("Environment_qv4gl")
 script = ExtResource("3_mo3qo")
 
+[node name="Fog" type="Node3D" parent="."]
+transform = Transform3D(-0.999668, 0, 0.0257582, 0, 1, 0, -0.0257582, 0, -0.999668, 139.694, 0, -391.051)
+
+[node name="FogVolume" type="FogVolume" parent="Fog"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 67.3286, 12.1857, -196.425)
+shape = 4
+material = SubResource("ShaderMaterial_etj4a")
+
 [node name="Player" parent="." instance=ExtResource("3_nktwx")]
 transform = Transform3D(-0.999668, 0, 0.0257582, 0, 1, 0, -0.0257582, 0, -0.999668, 67.3286, 12.1857, -196.425)
-
-[node name="Fog" type="Node3D" parent="Player"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -67.3286, -12.1857, 196.425)
-
-[node name="FogVolume" type="FogVolume" parent="Player/Fog"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 67.3286, 12.1857, -196.425)
-size = Vector3(400, 200, 400)
-material = SubResource("ShaderMaterial_etj4a")
 
 [node name="Moon" type="DirectionalLight3D" parent="."]
 unique_name_in_owner = true
