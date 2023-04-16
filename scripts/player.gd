@@ -10,7 +10,7 @@ var head_phase = 0
 var hand_phase = 0
 var tween
 var low_pass_filter = AudioServer.get_bus_effect(1, 0)
-
+var was_jumping = false
 var health = 1.0
 
 signal health_changed
@@ -20,6 +20,8 @@ func _ready():
 	health_changed.emit(health)
 
 func _physics_process(delta):
+	#print(AudioServer.get_bus_volume_db(AudioServer.get_bus_index("Music_Jump")))
+	
 	var input_movement = Input.get_vector("left", "right", "forwards", "backwards")
 	var s = speed if not Input.is_action_pressed("sprint") else sprint_speed
 	
@@ -31,8 +33,18 @@ func _physics_process(delta):
 				body.hit()
 			
 			$StepSounds.play()
+			
+			if was_jumping:
+				$"../BGM".crossfade_buses("Music_Walk", 4)
+				was_jumping = false
 		
-		v_speed = 90 if Input.is_action_pressed("jump") else 0
+		if Input.is_action_pressed("jump"):
+			$"../BGM".crossfade_buses("Music_Jump", 4)
+			was_jumping = true
+			v_speed = 90
+		else:
+			v_speed = 0
+		
 	else:
 		v_speed -= gravity * delta
 
@@ -76,9 +88,9 @@ func _physics_process(delta):
 	$"../Overlay/Frozen".modulate.a = clamp($"../Overlay/Frozen".modulate.a, 0, 1)
 	
 	if (Input.is_action_pressed("sprint")):
-		$"../BGM".crossfade_buses("Music_Walk", "Music_Run", 4)
-	else:
-		$"../BGM".crossfade_buses("Music_Run", "Music_Walk", 4)
+		$"../BGM".crossfade_buses("Music_Run", 4)
+	elif (Input.is_action_pressed("sprint") and was_jumping):
+		$"../BGM".crossfade_buses("Music_Walk", 4)
 	
 	if health < 1.0:
 		health += delta / 10

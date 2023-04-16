@@ -3,9 +3,9 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://qbyjvhqhqn0i"
-path.etc2="res://.godot/imported/leveltest_Plane-color.png-8509aa0ba30390cc0da4e82965b944b5.etc2.ctex"
+path.s3tc="res://.godot/imported/leveltest_Plane-color.png-8509aa0ba30390cc0da4e82965b944b5.s3tc.ctex"
 metadata={
-"imported_formats": ["etc2_astc"],
+"imported_formats": ["s3tc_bptc"],
 "vram_texture": true
 }
 generator_parameters={}
@@ -13,7 +13,7 @@ generator_parameters={}
 [deps]
 
 source_file="res://assets/level/leveltest_Plane-color.png"
-dest_files=["res://.godot/imported/leveltest_Plane-color.png-8509aa0ba30390cc0da4e82965b944b5.etc2.ctex"]
+dest_files=["res://.godot/imported/leveltest_Plane-color.png-8509aa0ba30390cc0da4e82965b944b5.s3tc.ctex"]
 
 [params]
 
