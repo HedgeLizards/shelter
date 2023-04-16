@@ -21,6 +21,7 @@ bus = &"Music_Run"
 
 [node name="MUS_MAIN_JUMP" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("4_inyds")
+autoplay = true
 bus = &"Music_Jump"
 
 [node name="ATMOSPHERE" type="AudioStreamPlayer" parent="."]
