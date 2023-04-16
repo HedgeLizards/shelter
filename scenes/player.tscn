@@ -1,4 +1,4 @@
-[gd_scene load_steps=21 format=3 uid="uid://x1xhbme7u44u"]
+[gd_scene load_steps=31 format=3 uid="uid://x1xhbme7u44u"]
 
 [ext_resource type="Script" path="res://scripts/player.gd" id="1_t26ob"]
 [ext_resource type="PackedScene" uid="uid://0m7qvktw7p2q" path="res://scenes/blizzard_particles.tscn" id="2_1qr6y"]
@@ -13,6 +13,12 @@
 [ext_resource type="AudioStream" uid="uid://b2bk4saqabxh1" path="res://assets/sounds/SND_HIT_2.wav" id="11_wn7r6"]
 [ext_resource type="AudioStream" uid="uid://dhvwicm2dc3yd" path="res://assets/sounds/SND_HIT_3.wav" id="12_oqkjt"]
 [ext_resource type="AudioStream" uid="uid://cdwqvxv0oc6gh" path="res://assets/sounds/SND_HIT_4.wav" id="13_hhi67"]
+[ext_resource type="AudioStream" uid="uid://vyo48g6raa7l" path="res://assets/sounds/SND_SLASH_1.wav" id="14_c7jl1"]
+[ext_resource type="AudioStream" uid="uid://b441doe7xc86s" path="res://assets/sounds/SND_JUMP.wav" id="14_vd31i"]
+[ext_resource type="AudioStream" uid="uid://rrimnj5gntl6" path="res://assets/sounds/SND_LAND_YETI.wav" id="15_cdt5s"]
+[ext_resource type="AudioStream" uid="uid://cc47hv4oxjw7i" path="res://assets/sounds/SND_SLASH_2.wav" id="15_g1pom"]
+[ext_resource type="AudioStream" uid="uid://cqa14st2u2d55" path="res://assets/sounds/SND_LAND_IMPACT.wav" id="15_ny7a2"]
+[ext_resource type="AudioStream" uid="uid://cywqnsvi1768o" path="res://assets/sounds/SND_SLASH_3.wav" id="16_ekiwi"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_cylrf"]
 radius = 0.3
@@ -60,6 +66,39 @@ stream_2/stream = ExtResource("12_oqkjt")
 stream_2/weight = 1.0
 stream_3/stream = ExtResource("13_hhi67")
 stream_3/weight = 1.0
+
+[sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_rg3j3"]
+streams_count = 3
+random_pitch = 1.02
+random_volume_offset_db = 0.0
+stream_0/stream = ExtResource("14_c7jl1")
+stream_0/weight = 1.0
+stream_1/stream = ExtResource("15_g1pom")
+stream_1/weight = 1.0
+stream_2/stream = ExtResource("16_ekiwi")
+stream_2/weight = 1.0
+
+[sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_8m4r5"]
+streams_count = 1
+playback_mode = 1
+random_pitch = 1.02
+random_volume_offset_db = 0.0
+stream_0/stream = ExtResource("14_vd31i")
+stream_0/weight = 1.0
+
+[sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_88kii"]
+streams_count = 1
+random_pitch = 1.02
+random_volume_offset_db = 0.0
+stream_0/stream = ExtResource("15_cdt5s")
+stream_0/weight = 1.0
+
+[sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_qw66f"]
+streams_count = 1
+random_pitch = 1.02
+random_volume_offset_db = 0.0
+stream_0/stream = ExtResource("15_ny7a2")
+stream_0/weight = 1.0
 
 [node name="Player" type="CharacterBody3D"]
 transform = Transform3D(1.00769, 0, 0, 0, 1.00769, 0, 0, 0, 1.00769, 0, 1.5, 0)
@@ -121,7 +160,7 @@ monitorable = false
 [node name="CollisionShape3D" type="CollisionShape3D" parent="SlashArea"]
 shape = SubResource("BoxShape3D_q2e73")
 
-[node name="StepSounds" type="AudioStreamPlayer3D" parent="."]
+[node name="SND_STEP" type="AudioStreamPlayer3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1.5, 0)
 stream = SubResource("AudioStreamRandomizer_f1mxl")
 attenuation_model = 3
@@ -141,4 +180,21 @@ bus = &"Enemy"
 
 [node name="SND_HIT" type="AudioStreamPlayer3D" parent="."]
 stream = SubResource("AudioStreamRandomizer_na5yk")
+bus = &"Player"
+
+[node name="SND_SLASH" type="AudioStreamPlayer3D" parent="."]
+stream = SubResource("AudioStreamRandomizer_rg3j3")
+bus = &"Player"
+
+[node name="SND_JUMP" type="AudioStreamPlayer3D" parent="."]
+stream = SubResource("AudioStreamRandomizer_8m4r5")
+bus = &"Player"
+
+[node name="SND_LAND_YETI" type="AudioStreamPlayer3D" parent="."]
+stream = SubResource("AudioStreamRandomizer_88kii")
+bus = &"Player"
+
+[node name="SND_LAND_IMPACT" type="AudioStreamPlayer3D" parent="."]
+transform = Transform3D(0.992369, 0, 0, 0, 0.992369, 0, 0, 0, 0.992369, 0, -1.5, 0)
+stream = SubResource("AudioStreamRandomizer_qw66f")
 bus = &"Player"

@@ -32,13 +32,16 @@ func _physics_process(delta):
 			for body in $SmashArea.get_overlapping_bodies():
 				body.hit()
 			
-			$StepSounds.play()
+			$SND_STEP.play()
 			
 			if was_jumping:
+				$SND_LAND_YETI.play()
+				$SND_LAND_IMPACT.play()
 				$"../BGM".crossfade_buses("Music_Walk", 4)
 				was_jumping = false
 		
 		if Input.is_action_pressed("jump"):
+			$SND_JUMP.play()
 			$"../BGM".crossfade_buses("Music_Jump", 4)
 			was_jumping = true
 			v_speed = 90
@@ -64,7 +67,7 @@ func _physics_process(delta):
 	
 	if (input_movement != Vector2.ZERO and is_on_floor()) or sign(sin(hand_phase)) == sign(sin(hand_phase + s * delta)):
 		if (hand_phase <= 0.5 * PI and hand_phase + s * delta >= 0.5 * PI) or (hand_phase <= 1.5 * PI and hand_phase + s * delta >= 1.5 * PI):
-			$StepSounds.play()
+			$SND_STEP.play()
 		
 		hand_phase = fmod(hand_phase + s * delta, TAU)
 	else:
@@ -89,6 +92,7 @@ func _physics_process(delta):
 	
 	if (Input.is_action_pressed("sprint")):
 		$"../BGM".crossfade_buses("Music_Run", 4)
+	
 	elif (Input.is_action_pressed("sprint") and was_jumping):
 		$"../BGM".crossfade_buses("Music_Walk", 4)
 	
@@ -116,6 +120,8 @@ func slash():
 	if tween != null and tween.is_running():
 		return
 	
+	$SND_SLASH.play()
+	
 	tween = create_tween().set_parallel()
 	
 	tween.tween_property($Head/Camera3D/Hand1, "rotation:y", deg_to_rad(101.9 - 35), 0.1)
@@ -132,6 +138,8 @@ func slash():
 		body.hit()
 
 func hit():
+	if !$SND_HIT.playing:
+		$SND_HIT.play()
 	health -= 0.5;
 	health_changed.emit(health)
 	if health < -0.5:
