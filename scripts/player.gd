@@ -1,9 +1,9 @@
 extends CharacterBody3D
 
 const MOUSE_SENSITIVITY = 0.003
-const speed = 5
-const sprint_speed = 15
-const gravity = 20
+const speed = 8
+const sprint_speed = 24
+const gravity = 90
 
 var v_speed = 0.0
 var head_phase = 0
@@ -17,15 +17,19 @@ func _physics_process(delta):
 	
 	if is_on_floor():
 		if v_speed < 0:
-			$Head/Camera3D.shake(v_speed / -30)
+			$Head/Camera3D.shake(v_speed / -110)
+			
+			for body in $SmashArea.get_overlapping_bodies():
+				body.hit()
+			
 			$StepSounds.play()
 		
-		v_speed = 12 if Input.is_action_pressed("jump") else 0
+		v_speed = 90 if Input.is_action_pressed("jump") else 0
 	else:
 		v_speed -= gravity * delta
 
 	if Input.is_action_pressed("fly"):
-		v_speed = 10
+		v_speed = 20
 	
 	velocity = Vector3(input_movement.x * s, v_speed, input_movement.y * s).rotated(Vector3.UP, rotation.y)
 	
@@ -97,10 +101,10 @@ func slash():
 	
 	tween = create_tween().set_parallel()
 	
-	tween.tween_property($Head/Camera3D/Hand1, "rotation:y", deg_to_rad(101.9 - 35), 0.2)
-	tween.tween_property($Head/Camera3D/Hand1, "rotation:z", deg_to_rad(-122.6 - 80), 0.2)
-	tween.tween_property($Head/Camera3D/Hand2, "rotation:y", deg_to_rad(78.1 + 35), 0.2)
-	tween.tween_property($Head/Camera3D/Hand2, "rotation:z", deg_to_rad(57.4 - 80), 0.2)
+	tween.tween_property($Head/Camera3D/Hand1, "rotation:y", deg_to_rad(101.9 - 35), 0.1)
+	tween.tween_property($Head/Camera3D/Hand1, "rotation:z", deg_to_rad(-122.6 - 80), 0.1)
+	tween.tween_property($Head/Camera3D/Hand2, "rotation:y", deg_to_rad(78.1 + 35), 0.1)
+	tween.tween_property($Head/Camera3D/Hand2, "rotation:z", deg_to_rad(57.4 - 80), 0.1)
 	
 	tween.chain().tween_property($Head/Camera3D/Hand1, "rotation:y", deg_to_rad(101.9), 0.2)
 	tween.tween_property($Head/Camera3D/Hand1, "rotation:z", deg_to_rad(-122.6), 0.2)
