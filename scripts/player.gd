@@ -90,7 +90,7 @@ func _physics_process(delta):
 	else:
 		$"../Overlay/Frozen".modulate.a += .025 * delta
 	
-	$"../Overlay/Frozen".modulate.a = clamp($"../Overlay/Frozen".modulate.a, 0, 1)
+	$"../Overlay/Frozen".modulate.a = clamp($"../Overlay/Frozen".modulate.a, 0, .15)
 	
 #	if (Input.is_action_pressed("sprint")):
 #		$"../BGM".crossfade_buses("Music_Run", 4)
