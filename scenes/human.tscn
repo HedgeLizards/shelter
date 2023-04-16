@@ -36,9 +36,11 @@ stream_0/weight = 1.0
 collision_layer = 4
 collision_mask = 7
 input_ray_pickable = false
+mass = 50.0
 gravity_scale = 2.0
 max_contacts_reported = 3
 contact_monitor = true
+freeze = true
 freeze_mode = 1
 linear_damp = 1.0
 angular_damp = 1.0
@@ -75,7 +77,6 @@ skeleton = NodePath("../..")
 [node name="SND_SHOOT" type="AudioStreamPlayer3D" parent="Gun"]
 stream = SubResource("AudioStreamRandomizer_ge0ia")
 panning_strength = 2.0
-bus = &"Enemy"
 attenuation_filter_cutoff_hz = 10000.0
 attenuation_filter_db = -6.0
 
@@ -89,4 +90,17 @@ hit_from_inside = true
 wait_time = 2.0
 one_shot = true
 
+[node name="AITick" type="Timer" parent="."]
+
+[node name="Surprise" type="Timer" parent="."]
+wait_time = 2.0
+one_shot = true
+
+[node name="Searching" type="Timer" parent="."]
+wait_time = 10.0
+one_shot = true
+
 [connection signal="timeout" from="GetUp" to="." method="_on_get_up_timeout"]
+[connection signal="timeout" from="AITick" to="." method="_on_ai_tick_timeout"]
+[connection signal="timeout" from="Surprise" to="." method="_on_surprise_timeout"]
+[connection signal="timeout" from="Searching" to="." method="_on_searching_timeout"]

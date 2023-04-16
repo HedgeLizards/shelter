@@ -78,7 +78,7 @@ light_energy = 0.2
 shadow_enabled = true
 
 [node name="Fire" parent="." instance=ExtResource("7_aggce")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 86.282, -4.33477, 7.81827)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 86.282, -9.56261, 7.81827)
 
 [node name="BGM" parent="." instance=ExtResource("8_wvepe")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 52.7469, 0)
@@ -118,7 +118,7 @@ grow_horizontal = 2
 grow_vertical = 2
 
 [node name="Human" parent="." node_paths=PackedStringArray("player") instance=ExtResource("8_ktiaq")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 49.9897, -9.10026, 2.19014)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 49.9897, -7.60573, 2.19014)
 player = NodePath("../Player")
 
 [node name="Back of Cave" type="Node3D" parent="."]
