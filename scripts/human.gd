@@ -61,7 +61,7 @@ func shoot():
 	# play gunshot sound and hurt player
 	player.hit()
 	
-	camera_3d.shake(0.4)
+	camera_3d.shake(0.5)
 	
 	shoot_tween = create_tween().set_process_mode(Tween.TWEEN_PROCESS_PHYSICS)
 	
