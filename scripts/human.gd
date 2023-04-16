@@ -26,7 +26,7 @@ func search_player():
 					
 					shoot_tween = create_tween().set_process_mode(Tween.TWEEN_PROCESS_PHYSICS)
 					
-					shoot_tween.tween_property($Gun, "rotation:x", -0.5 * PI, 2 - $Gun.rotation.x / (-0.25 * PI))
+					shoot_tween.tween_property($Gun, "rotation:x", -0.5 * PI, 1 - $Gun.rotation.x / (-0.25 * PI))
 					shoot_tween.tween_callback(shoot).set_delay(0.5)
 				
 				target_rotation_y = atan2($RayCast3D.global_position.x - player.global_position.x, $RayCast3D.global_position.z - player.global_position.z)
@@ -58,20 +58,23 @@ func _physics_process(delta):
 			rotation.y += TAU
 
 func shoot():
-	# play gunshot sound and hurt player
-	player.hit()
-	
-	camera_3d.shake(0.5)
-	
+	if randf() < 0.5:
+		# play gunshot sound and hurt player
+		player.hit()
+
+		camera_3d.shake(0.5)
+	else:
+		player.miss()
+
 	shoot_tween = create_tween().set_process_mode(Tween.TWEEN_PROCESS_PHYSICS)
-	
+
 	shoot_tween.tween_property($Gun, "rotation:x", -0.25 * PI, 0.1)
-	shoot_tween.tween_callback(shoot_again).set_delay(2)
+	shoot_tween.tween_callback(shoot_again).set_delay(1)
 
 func shoot_again():
 	shoot_tween = create_tween().set_process_mode(Tween.TWEEN_PROCESS_PHYSICS)
 	
-	shoot_tween.tween_property($Gun, "rotation:x", -0.5 * PI, 1)
+	shoot_tween.tween_property($Gun, "rotation:x", -0.5 * PI, 0.5)
 	shoot_tween.tween_callback(shoot).set_delay(0.5)
 
 func hit():
