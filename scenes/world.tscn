@@ -1,7 +1,6 @@
 [gd_scene load_steps=17 format=3 uid="uid://d0ybs7e25b728"]
 
 [ext_resource type="Shader" path="res://shaders/sky.gdshader" id="1_23ay3"]
-[ext_resource type="PackedScene" uid="uid://b1lnk263dkgot" path="res://scenes/leveltest.tscn" id="2_keimh"]
 [ext_resource type="Texture2D" uid="uid://ypnlftyw5ohh" path="res://assets/stars.png" id="2_ypvou"]
 [ext_resource type="Script" path="res://scripts/environment.gd" id="3_mo3qo"]
 [ext_resource type="PackedScene" uid="uid://x1xhbme7u44u" path="res://scenes/player.tscn" id="3_nktwx"]
@@ -10,6 +9,7 @@
 [ext_resource type="PackedScene" uid="uid://c6sj87wf6aicq" path="res://scenes/human.tscn" id="8_ktiaq"]
 [ext_resource type="PackedScene" uid="uid://514iq610q8fs" path="res://scenes/bgm.tscn" id="8_wvepe"]
 [ext_resource type="Texture2D" uid="uid://86xbv588trlq" path="res://assets/textures/frost.png" id="9_jkdtj"]
+[ext_resource type="PackedScene" uid="uid://dnxdixu10e0iw" path="res://scenes/newlevel.tscn" id="10_tyt72"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_nq0oj"]
 shader = ExtResource("1_23ay3")
@@ -29,9 +29,12 @@ ambient_light_sky_contribution = 0.68
 tonemap_white = 5.2
 glow_bloom = 0.55
 volumetric_fog_enabled = true
-volumetric_fog_density = 0.0
-volumetric_fog_albedo = Color(0.219608, 0.219608, 0.219608, 1)
-volumetric_fog_emission = Color(1, 1, 1, 1)
+volumetric_fog_density = 0.06
+volumetric_fog_albedo = Color(0.466667, 0.466667, 0.466667, 1)
+volumetric_fog_emission = Color(0.00784314, 0.00784314, 0.00784314, 1)
+volumetric_fog_emission_energy = 0.0
+volumetric_fog_gi_inject = 0.29
+volumetric_fog_detail_spread = 2.27358
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_etj4a"]
 shader = ExtResource("5_yrd2i")
@@ -51,30 +54,29 @@ environment = SubResource("Environment_qv4gl")
 script = ExtResource("3_mo3qo")
 
 [node name="Player" parent="." instance=ExtResource("3_nktwx")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -9.726, 2.33941, 15.297)
-
-[node name="leveltest" parent="." instance=ExtResource("2_keimh")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -13.3218, -4.3989, -5.61747)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 67.3286, 12.1857, -196.425)
 
 [node name="FogVolume" type="FogVolume" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -20, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 32.7469, 0)
+visible = false
 size = Vector3(200, 100, 200)
 material = SubResource("ShaderMaterial_etj4a")
 
 [node name="Moon" type="DirectionalLight3D" parent="."]
 unique_name_in_owner = true
-transform = Transform3D(1, 0, 0, 0, -0.617489, 0.786579, 0, -0.786579, -0.617489, 0, 38.9419, 0)
+transform = Transform3D(1, 0, 0, 0, -0.617489, 0.786579, 0, -0.786579, -0.617489, 0, 91.6888, 0)
 light_color = Color(0.533333, 0.698039, 0.984314, 1)
 light_energy = 0.2
 shadow_enabled = true
 
 [node name="Fire" parent="." instance=ExtResource("7_aggce")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -10.288, -0.696363, 7.81827)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 86.282, -4.33477, 7.81827)
 
 [node name="BGM" parent="." instance=ExtResource("8_wvepe")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 52.7469, 0)
 
 [node name="Cave" type="Area3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -9.75529, 2.88727, 12.2574)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -9.75529, 55.6341, 12.2574)
 collision_layer = 8
 collision_mask = 0
 input_ray_pickable = false
@@ -85,6 +87,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.631648)
 shape = SubResource("SphereShape3D_aqr61")
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
+visible = false
 
 [node name="Frozen" type="TextureRect" parent="CanvasLayer"]
 anchors_preset = 15
@@ -94,14 +97,18 @@ grow_horizontal = 2
 grow_vertical = 2
 texture = ExtResource("9_jkdtj")
 expand_mode = 1
+metadata/_edit_use_anchors_ = true
 
 [node name="Human" parent="." node_paths=PackedStringArray("player") instance=ExtResource("8_ktiaq")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -11.1437, 0.5929, 2.19014)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 49.9897, -9.10026, 2.19014)
 player = NodePath("../Player")
 
 [node name="Back of Cave" type="Node3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -8.57009, 3.20363, 15.6701)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -8.57009, 55.9505, 15.6701)
 
 [node name="FogVolume2" type="FogVolume" parent="."]
-transform = Transform3D(6.15606, 0, 0, 0, 6.00086, 0, 0, 0, 6.40759, -9.65639, 3.03635, 11.8756)
+transform = Transform3D(6.15606, 0, 0, 0, 6.00086, 0, 0, 0, 6.40759, -9.65639, 55.7832, 11.8756)
 material = SubResource("FogMaterial_mcypa")
+
+[node name="newlevel" parent="." instance=ExtResource("10_tyt72")]
+transform = Transform3D(5, 0, 0, 0, 5, 0, 0, 0, 5, 2.08165e-12, 2.08165e-12, 2.08165e-12)

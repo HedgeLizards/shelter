@@ -55,6 +55,7 @@ transform = Transform3D(-0.039599, 0.218526, -0.975027, 0.839544, 0.536421, 0.08
 transform = Transform3D(0.0406836, -0.218748, 0.974933, 0.839373, 0.536802, 0.0854169, -0.54203, 0.814858, 0.205451, 0.79, -0.99, -0.5)
 
 [node name="OmniLight3D" type="OmniLight3D" parent="Head/Camera3D"]
+visible = false
 light_volumetric_fog_energy = 0.0
 omni_range = 15.0
 

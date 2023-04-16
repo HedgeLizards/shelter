@@ -3,16 +3,16 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://rqxqqxi5rgdf"
-path.s3tc="res://.godot/imported/pixelflok.png-31c8e4e193176ce7bd683fb8eef43a07.s3tc.ctex"
+path.etc2="res://.godot/imported/pixelflok.png-31c8e4e193176ce7bd683fb8eef43a07.etc2.ctex"
 metadata={
-"imported_formats": ["s3tc_bptc"],
+"imported_formats": ["etc2_astc"],
 "vram_texture": true
 }
 
 [deps]
 
 source_file="res://assets/particles/pixelflok.png"
-dest_files=["res://.godot/imported/pixelflok.png-31c8e4e193176ce7bd683fb8eef43a07.s3tc.ctex"]
+dest_files=["res://.godot/imported/pixelflok.png-31c8e4e193176ce7bd683fb8eef43a07.etc2.ctex"]
 
 [params]
 
