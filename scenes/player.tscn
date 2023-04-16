@@ -74,7 +74,6 @@ light_volumetric_fog_energy = 0.0
 omni_range = 15.0
 
 [node name="BlizzardParticles" parent="Head/Camera3D" instance=ExtResource("2_1qr6y")]
-unique_name_in_owner = true
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.368755, 0, -0.869051)
 
 [node name="InsideTest" type="Area3D" parent="Head"]

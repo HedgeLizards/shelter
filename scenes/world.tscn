@@ -118,7 +118,7 @@ grow_horizontal = 2
 grow_vertical = 2
 
 [node name="Human" parent="." node_paths=PackedStringArray("player") instance=ExtResource("8_ktiaq")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 49.9897, -7.60573, 2.19014)
+transform = Transform3D(-0.922356, 0, 0.386341, 0, 1, 0, -0.386341, 0, -0.922356, 49.9897, -7.60573, 2.19014)
 player = NodePath("../Player")
 
 [node name="Back of Cave" type="Node3D" parent="."]
