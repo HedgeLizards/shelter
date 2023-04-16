@@ -225,3 +225,7 @@ func _on_surprise_timeout():
 func _on_searching_timeout():
 	if state == SEARCHING:
 		state = UNAWARE
+		
+		
+func is_engaged():
+	return state == SHOOTING or state == RECOVERING or state == STANDUP

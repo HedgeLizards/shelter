@@ -97,10 +97,19 @@ func _physics_process(delta):
 #	elif (Input.is_action_pressed("sprint") and was_jumping):
 #		$"../BGM".crossfade_buses("Music_Walk", 4)
 	
+	var engaged = false
+	
+	var nodes_in_group = get_tree().get_nodes_in_group("humans")
+	for node in nodes_in_group:
+		if node.is_engaged(): 
+			engaged = true
+			break
+	
 	var bgm = $"../BGM"
+		
 	if was_jumping and not is_on_floor() :
 		bgm.crossfade_buses(bgm.JUMP,4)
-	elif sprinting:
+	elif sprinting or engaged:
 		bgm.crossfade_buses(bgm.RUN,4)
 	else:
 		bgm.crossfade_buses(bgm.WALK,4)
