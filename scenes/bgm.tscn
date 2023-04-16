@@ -1,14 +1,22 @@
-[gd_scene load_steps=3 format=3 uid="uid://514iq610q8fs"]
+[gd_scene load_steps=5 format=3 uid="uid://514iq610q8fs"]
 
+[ext_resource type="Script" path="res://scripts/bgm.gd" id="1_d2dun"]
 [ext_resource type="AudioStream" uid="uid://dho422mgujqji" path="res://assets/sounds/MUS_MAIN_WALK.ogg" id="1_vnc0n"]
+[ext_resource type="AudioStream" uid="uid://s26uxtajrto" path="res://assets/sounds/MUS_MAIN_RUN.ogg" id="2_gni6e"]
 [ext_resource type="AudioStream" uid="uid://b6dui8f5vq4o2" path="res://assets/sounds/ATM_BLIZZARD.ogg" id="2_qrsvm"]
 
 [node name="BGM" type="Node3D"]
+script = ExtResource("1_d2dun")
 
 [node name="MUS_MAIN_WALK" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("1_vnc0n")
 autoplay = true
 bus = &"Music_Walk"
+
+[node name="MUS_MAIN_RUN" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("2_gni6e")
+autoplay = true
+bus = &"Music_Run"
 
 [node name="ATMOSPHERE" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("2_qrsvm")

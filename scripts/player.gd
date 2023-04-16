@@ -58,7 +58,7 @@ func _physics_process(delta):
 	
 	var distance = self.global_position.distance_to($"../Back of Cave".global_position)
 	low_pass_filter.cutoff_hz = 2 ** distance
-	low_pass_filter.cutoff_hz = clamp(low_pass_filter.cutoff_hz, 250, 20500)
+	low_pass_filter.cutoff_hz = clamp(low_pass_filter.cutoff_hz, 800, 20500)
 	
 	# When inside, fade out frozen overlay
 	if ($Head/InsideTest.has_overlapping_areas()):
@@ -69,6 +69,12 @@ func _physics_process(delta):
 		$"../CanvasLayer/Frozen".modulate.a += .025 * delta
 	
 	$"../CanvasLayer/Frozen".modulate.a = clamp($"../CanvasLayer/Frozen".modulate.a, 0, 1)
+	
+	if (Input.is_action_pressed("sprint")):
+		$"../BGM".crossfade_buses("Music_Walk", "Music_Run", 4)
+	else:
+		$"../BGM".crossfade_buses("Music_Run", "Music_Walk", 4)
+	
 	
 func _input(event):
 	# Capturing/Freeing the cursor
