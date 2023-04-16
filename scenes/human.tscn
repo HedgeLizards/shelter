@@ -27,7 +27,7 @@ size = Vector3(0.1, 1.2, 0.1)
 
 [sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_ge0ia"]
 streams_count = 1
-random_pitch = 1.02
+random_pitch = 1.2
 random_volume_offset_db = 0.0
 stream_0/stream = ExtResource("2_7s20h")
 stream_0/weight = 1.0
@@ -74,7 +74,10 @@ skeleton = NodePath("../..")
 
 [node name="SND_SHOOT" type="AudioStreamPlayer3D" parent="Gun"]
 stream = SubResource("AudioStreamRandomizer_ge0ia")
+panning_strength = 2.0
 bus = &"Enemy"
+attenuation_filter_cutoff_hz = 10000.0
+attenuation_filter_db = -6.0
 
 [node name="RayCast3D" type="RayCast3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.7, -0.25)
