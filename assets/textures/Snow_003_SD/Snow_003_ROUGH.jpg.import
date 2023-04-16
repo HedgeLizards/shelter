@@ -3,16 +3,16 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://xak50bkdchtw"
-path.s3tc="res://.godot/imported/Snow_003_ROUGH.jpg-216efceee0861dca64a56b2fa1ead383.s3tc.ctex"
+path.etc2="res://.godot/imported/Snow_003_ROUGH.jpg-216efceee0861dca64a56b2fa1ead383.etc2.ctex"
 metadata={
-"imported_formats": ["s3tc_bptc"],
+"imported_formats": ["etc2_astc"],
 "vram_texture": true
 }
 
 [deps]
 
 source_file="res://assets/textures/Snow_003_SD/Snow_003_ROUGH.jpg"
-dest_files=["res://.godot/imported/Snow_003_ROUGH.jpg-216efceee0861dca64a56b2fa1ead383.s3tc.ctex"]
+dest_files=["res://.godot/imported/Snow_003_ROUGH.jpg-216efceee0861dca64a56b2fa1ead383.etc2.ctex"]
 
 [params]
 

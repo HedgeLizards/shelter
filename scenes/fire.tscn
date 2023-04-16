@@ -1,14 +1,54 @@
-[gd_scene load_steps=5 format=3 uid="uid://c6y5r1lcu46r7"]
+[gd_scene load_steps=11 format=3 uid="uid://c6y5r1lcu46r7"]
 
 [ext_resource type="AudioStream" uid="uid://yvcxewmkkkt2" path="res://assets/sounds/SND_FIRE.ogg" id="1_c3tff"]
 [ext_resource type="ArrayMesh" uid="uid://pyf4i4vyj7cl" path="res://assets/firemesh.obj" id="2_4itrw"]
 [ext_resource type="Shader" path="res://shaders/flames.gdshader" id="2_xko0k"]
+[ext_resource type="PackedScene" uid="uid://cvwu0upw7yw8c" path="res://scenes/barrel.tscn" id="4_ewpqr"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_fdxe0"]
 render_priority = 0
 shader = ExtResource("2_xko0k")
 
+[sub_resource type="Curve" id="Curve_3xc0f"]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(1, 0.362949), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CurveTexture" id="CurveTexture_a2ku8"]
+curve = SubResource("Curve_3xc0f")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_wr46a"]
+emission_shape = 1
+emission_sphere_radius = 0.8
+particle_flag_rotate_y = true
+gravity = Vector3(2.08165e-12, 5, 2)
+angular_velocity_min = -10.81
+angular_velocity_max = 137.58
+angle_min = -269.3
+angle_max = 197.9
+scale_min = 0.7
+scale_max = 1.5
+scale_curve = SubResource("CurveTexture_a2ku8")
+color = Color(1, 0.533333, 0.313726, 1)
+hue_variation_min = 0.46
+hue_variation_max = 0.46
+turbulence_enabled = true
+turbulence_noise_strength = 0.1
+turbulence_noise_scale = 0.1
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_n7dop"]
+blend_mode = 1
+shading_mode = 0
+albedo_color = Color(0.992157, 0.607843, 0, 1)
+disable_receive_shadows = true
+shadow_to_opacity = true
+
+[sub_resource type="BoxMesh" id="BoxMesh_6c2x5"]
+lightmap_size_hint = Vector2i(5, 7)
+material = SubResource("StandardMaterial3D_n7dop")
+size = Vector3(0.1, 0.1, 0.1)
+
 [node name="Fire" type="Node3D"]
+transform = Transform3D(1.00264, 0, 0, 0, 1.00264, 0, 0, 0, 1.00264, 0, 0, 0)
 
 [node name="AudioStreamPlayer3D" type="AudioStreamPlayer3D" parent="."]
 stream = ExtResource("1_c3tff")
@@ -16,18 +56,34 @@ autoplay = true
 max_distance = 20.0
 
 [node name="Flames" type="MeshInstance3D" parent="."]
-transform = Transform3D(1.333, 0, 0, 0, 4, 0, 0, 0, 1.333, 0, 2, 0)
+transform = Transform3D(1.333, 0, 0, 0, 2.94799, 0, 0, 0, 1.333, 0, 5.34866, 0)
+visible = false
 cast_shadow = 0
 mesh = ExtResource("2_4itrw")
 surface_material_override/0 = SubResource("ShaderMaterial_fdxe0")
 
 [node name="OmniLight3D" type="OmniLight3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.20109, 0)
+transform = Transform3D(0.99737, 0, 0, 0, 0.99737, 0, 0, 0, 0.99737, 0, 2.84487, 0)
 light_color = Color(0.992157, 0.572549, 0, 1)
 light_energy = 5.0
-light_size = 0.5
 light_bake_mode = 1
 shadow_enabled = true
 shadow_blur = 0.0
 omni_range = 50.0
 omni_shadow_mode = 0
+
+[node name="barrel" parent="." instance=ExtResource("4_ewpqr")]
+transform = Transform3D(1.29263, 0, 0, 0, 1.29263, 0, 0, 0, 1.29263, 2.08165e-12, 0.952074, 2.08165e-12)
+
+[node name="GPUParticles3D" type="GPUParticles3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.00190566, 2.13886, -0.00932714)
+cast_shadow = 0
+gi_mode = 0
+amount = 1000
+lifetime = 3.0
+explosiveness = 0.12
+randomness = 0.33
+interpolate = false
+trail_lifetime = 2.46
+process_material = SubResource("ParticleProcessMaterial_wr46a")
+draw_pass_1 = SubResource("BoxMesh_6c2x5")

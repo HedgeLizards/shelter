@@ -5,12 +5,13 @@
 [ext_resource type="Texture2D" uid="uid://7kh7mvu8d7jo" path="res://assets/textures/Snow_002_SD/Snow_002_ROUGH.jpg" id="3_ijn4h"]
 
 [resource]
+albedo_color = Color(1, 1, 1, 0)
 albedo_texture = ExtResource("1_yeowa")
 roughness = 0.68
 roughness_texture = ExtResource("3_ijn4h")
 roughness_texture_channel = 4
 normal_enabled = true
-normal_scale = 0.75
+normal_scale = 0.5
 normal_texture = ExtResource("2_habat")
-uv1_scale = Vector3(10, 10, 10)
+uv1_scale = Vector3(20, 20, 20)
 uv1_triplanar = true

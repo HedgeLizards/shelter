@@ -1,0 +1,21 @@
+[remap]
+
+importer="wavefront_obj"
+importer_version=1
+type="Mesh"
+uid="uid://yx4bm3re36n7"
+path="res://.godot/imported/human_rigged.obj-18df1d87435722c6e6bd724ff7e5a4ea.mesh"
+
+[deps]
+
+files=["res://.godot/imported/human_rigged.obj-18df1d87435722c6e6bd724ff7e5a4ea.mesh"]
+
+source_file="res://assets/human/human_rigged.obj"
+dest_files=["res://.godot/imported/human_rigged.obj-18df1d87435722c6e6bd724ff7e5a4ea.mesh", "res://.godot/imported/human_rigged.obj-18df1d87435722c6e6bd724ff7e5a4ea.mesh"]
+
+[params]
+
+generate_tangents=true
+scale_mesh=Vector3(1, 1, 1)
+offset_mesh=Vector3(0, 0, 0)
+optimize_mesh=true
