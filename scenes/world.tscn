@@ -28,18 +28,21 @@ ambient_light_color = Color(1, 1, 1, 1)
 ambient_light_sky_contribution = 0.68
 tonemap_white = 5.2
 glow_bloom = 0.55
+fog_enabled = true
+fog_light_color = Color(0, 0, 0, 1)
+fog_light_energy = 0.5
+fog_sky_affect = 0.0
 volumetric_fog_enabled = true
-volumetric_fog_density = 0.06
-volumetric_fog_albedo = Color(0.466667, 0.466667, 0.466667, 1)
-volumetric_fog_emission = Color(0.00784314, 0.00784314, 0.00784314, 1)
+volumetric_fog_density = 0.0
+volumetric_fog_emission = Color(0.392157, 0.392157, 0.392157, 1)
 volumetric_fog_emission_energy = 0.0
 volumetric_fog_gi_inject = 0.29
 volumetric_fog_detail_spread = 2.27358
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_etj4a"]
 shader = ExtResource("5_yrd2i")
-shader_parameter/color = Color(0.341176, 0.341176, 0.341176, 1)
-shader_parameter/emission = Color(0.396078, 0.396078, 0.396078, 1)
+shader_parameter/color = Color(1, 1, 1, 1)
+shader_parameter/emission = Color(0.231373, 0.231373, 0.231373, 1)
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_aqr61"]
 radius = 8.12869
@@ -54,12 +57,14 @@ environment = SubResource("Environment_qv4gl")
 script = ExtResource("3_mo3qo")
 
 [node name="Player" parent="." instance=ExtResource("3_nktwx")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 67.3286, 12.1857, -196.425)
+transform = Transform3D(-0.999668, 0, 0.0257582, 0, 1, 0, -0.0257582, 0, -0.999668, 67.3286, 12.1857, -196.425)
 
-[node name="FogVolume" type="FogVolume" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 32.7469, 0)
-visible = false
-size = Vector3(200, 100, 200)
+[node name="Fog" type="Node3D" parent="Player"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -67.3286, -12.1857, 196.425)
+
+[node name="FogVolume" type="FogVolume" parent="Player/Fog"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 67.3286, 12.1857, -196.425)
+size = Vector3(400, 200, 400)
 material = SubResource("ShaderMaterial_etj4a")
 
 [node name="Moon" type="DirectionalLight3D" parent="."]
