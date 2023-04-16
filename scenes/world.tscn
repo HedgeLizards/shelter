@@ -11,7 +11,7 @@
 [ext_resource type="PackedScene" uid="uid://514iq610q8fs" path="res://scenes/bgm.tscn" id="8_wvepe"]
 [ext_resource type="Shader" path="res://shaders/damage.gdshader" id="9_48pi5"]
 [ext_resource type="Texture2D" uid="uid://86xbv588trlq" path="res://assets/textures/frost.png" id="9_jkdtj"]
-[ext_resource type="PackedScene" uid="uid://dnxdixu10e0iw" path="res://scenes/newlevel.tscn" id="10_tyt72"]
+[ext_resource type="PackedScene" path="res://scenes/newlevel.tscn" id="10_tyt72"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_nq0oj"]
 shader = ExtResource("1_23ay3")
@@ -118,7 +118,27 @@ grow_horizontal = 2
 grow_vertical = 2
 
 [node name="Human" parent="." node_paths=PackedStringArray("player") instance=ExtResource("8_ktiaq")]
-transform = Transform3D(-0.922356, 0, 0.386341, 0, 1, 0, -0.386341, 0, -0.922356, 49.9897, -7.60573, 2.19014)
+transform = Transform3D(-0.922356, 0, 0.386341, 0, 1, 0, -0.386341, 0, -0.922356, 49.9897, -14.8198, 2.19014)
+player = NodePath("../Player")
+
+[node name="Human2" parent="." node_paths=PackedStringArray("player") instance=ExtResource("8_ktiaq")]
+transform = Transform3D(0.0560832, 0, 0.998426, 0, 1, 0, -0.998426, 0, 0.0560832, 68.9629, -14.8198, 2.19014)
+player = NodePath("../Player")
+
+[node name="Human3" parent="." node_paths=PackedStringArray("player") instance=ExtResource("8_ktiaq")]
+transform = Transform3D(-0.828871, 0, 0.559439, 0, 1, 0, -0.559439, 0, -0.828871, 68.9629, -14.8198, -37.3133)
+player = NodePath("../Player")
+
+[node name="Human4" parent="." node_paths=PackedStringArray("player") instance=ExtResource("8_ktiaq")]
+transform = Transform3D(-0.828871, 0, 0.559439, 0, 1, 0, -0.559439, 0, -0.828871, 97.2951, -17.119, -52.053)
+player = NodePath("../Player")
+
+[node name="Human5" parent="." node_paths=PackedStringArray("player") instance=ExtResource("8_ktiaq")]
+transform = Transform3D(0.911317, 0, 0.411705, 0, 1, 0, -0.411705, 0, 0.911317, 97.2951, -17.119, -23.2277)
+player = NodePath("../Player")
+
+[node name="Human6" parent="." node_paths=PackedStringArray("player") instance=ExtResource("8_ktiaq")]
+transform = Transform3D(-0.046095, 0, 0.998937, 0, 1, 0, -0.998937, 0, -0.046095, 81.5691, -17.119, 16.8419)
 player = NodePath("../Player")
 
 [node name="Back of Cave" type="Node3D" parent="."]
