@@ -41,7 +41,7 @@ volumetric_fog_emission_energy = 0.0
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_etj4a"]
 shader = ExtResource("5_yrd2i")
 shader_parameter/color = Color(1, 1, 1, 1)
-shader_parameter/emission = Color(0.231373, 0.231373, 0.231373, 1)
+shader_parameter/emission = Color(0, 0, 0, 1)
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_aqr61"]
 radius = 8.12869
@@ -123,6 +123,7 @@ player = NodePath("../Player")
 
 [node name="Back of Cave" type="Node3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -8.57009, 55.9505, 15.6701)
+visible = false
 
 [node name="FogVolume2" type="FogVolume" parent="."]
 transform = Transform3D(6.15606, 0, 0, 0, 6.00086, 0, 0, 0, 6.40759, -9.65639, 55.7832, 11.8756)
