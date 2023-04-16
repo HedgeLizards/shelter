@@ -11,7 +11,7 @@
 [ext_resource type="PackedScene" uid="uid://514iq610q8fs" path="res://scenes/bgm.tscn" id="8_wvepe"]
 [ext_resource type="Shader" path="res://shaders/damage.gdshader" id="9_48pi5"]
 [ext_resource type="Texture2D" uid="uid://86xbv588trlq" path="res://assets/textures/frost.png" id="9_jkdtj"]
-[ext_resource type="PackedScene" uid="uid://dnxdixu10e0iw" path="res://scenes/newlevel.tscn" id="10_tyt72"]
+[ext_resource type="PackedScene" path="res://scenes/newlevel.tscn" id="10_tyt72"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_nq0oj"]
 shader = ExtResource("1_23ay3")
@@ -68,7 +68,7 @@ shape = 4
 material = SubResource("ShaderMaterial_etj4a")
 
 [node name="Player" parent="." instance=ExtResource("3_nktwx")]
-transform = Transform3D(-0.999668, 0, 0.0257582, 0, 1, 0, -0.0257582, 0, -0.999668, 67.3286, 12.1857, -196.425)
+transform = Transform3D(-0.999668, 0, 0.0257582, 0, 1, 0, -0.0257582, 0, -0.999668, 67.3286, 12.1857, -85.3942)
 
 [node name="Moon" type="DirectionalLight3D" parent="."]
 unique_name_in_owner = true

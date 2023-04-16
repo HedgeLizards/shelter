@@ -1,4 +1,4 @@
-extends CharacterBody3D
+extends RigidBody3D
 
 @export var player: Node
 
@@ -10,6 +10,9 @@ var health = 3
 @onready var camera_3d = player.get_node("Head/Camera3D")
 @onready var original_rotation_y = rotation.y
 @onready var target_rotation_y = original_rotation_y
+
+func _ready():
+	freeze = true
 
 func search_player():
 	if $RayCast3D.global_position.distance_to(player.global_position) <= $Flashlight/SpotLight3D.spot_range:
@@ -26,7 +29,7 @@ func search_player():
 					
 					shoot_tween = create_tween().set_process_mode(Tween.TWEEN_PROCESS_PHYSICS)
 					
-					shoot_tween.tween_property($Gun, "rotation:x", -0.5 * PI, 2 - $Gun.rotation.x / (-0.25 * PI))
+					shoot_tween.tween_property($Gun, "rotation:x", -0.5 * PI, 1 - $Gun.rotation.x / (-0.25 * PI))
 					shoot_tween.tween_callback(shoot).set_delay(0.5)
 				
 				target_rotation_y = atan2($RayCast3D.global_position.x - player.global_position.x, $RayCast3D.global_position.z - player.global_position.z)
@@ -58,20 +61,24 @@ func _physics_process(delta):
 			rotation.y += TAU
 
 func shoot():
-	# play gunshot sound and hurt player
-	player.hit()
+	$Gun/SND_SHOOT.play()
 	
-	camera_3d.shake(0.5)
-	
+	if randf() < 0.5:
+		# play gunshot sound and hurt player
+		player.hit()
+		camera_3d.shake(0.5)
+	else:
+		player.miss()
+
 	shoot_tween = create_tween().set_process_mode(Tween.TWEEN_PROCESS_PHYSICS)
-	
+
 	shoot_tween.tween_property($Gun, "rotation:x", -0.25 * PI, 0.1)
-	shoot_tween.tween_callback(shoot_again).set_delay(2)
+	shoot_tween.tween_callback(shoot_again).set_delay(1)
 
 func shoot_again():
 	shoot_tween = create_tween().set_process_mode(Tween.TWEEN_PROCESS_PHYSICS)
 	
-	shoot_tween.tween_property($Gun, "rotation:x", -0.5 * PI, 1)
+	shoot_tween.tween_property($Gun, "rotation:x", -0.5 * PI, 0.5)
 	shoot_tween.tween_callback(shoot).set_delay(0.5)
 
 func hit():
@@ -79,17 +86,26 @@ func hit():
 	
 	health -= 1
 	
+	print("hithit")
+	freeze = false
+	
+	var dir = player.position.direction_to(position)
+	dir.y = 0.5
+	linear_velocity = dir * 20
+	angular_velocity = Vector3(2, randf()-.5, 0)
+
 	if hit_tween != null:
 		hit_tween.kill()
 		
 	hit_tween = create_tween()
 	
-	hit_tween.tween_property(self, "rotation:x", 0.125 * PI, 0.25 - rotation.x / (0.5 * PI))
+	# hit_tween.tween_property(self, "rotation:x", 0.125 * PI, 0.25 - rotation.x / (0.5 * PI))
 	
 	if health > 0:
-		hit_tween.tween_property(self, "rotation:x", 0, 0.5)
+		$GetUp.start()
+		# hit_tween.tween_property(self, "rotation:x", 0, 0.5)
 	else:
-		hit_tween.parallel().tween_property($Body/MeshInstance3D, "mesh:material:albedo_color:a", 0, 1)
+		hit_tween.parallel().tween_property($Body/MeshInstance3D, "mesh:material:albedo_color:a", 0, 2)
 		hit_tween.tween_callback(queue_free)
 		
 		if shoot_tween != null:
@@ -97,3 +113,10 @@ func hit():
 		
 		set_physics_process(false)
 		remove_from_group("humans")
+
+
+
+func _on_get_up_timeout():
+	freeze = true
+	rotation = Vector3(0, rotation.y, 0)
+	position.y += 1

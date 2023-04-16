@@ -132,6 +132,9 @@ func hit():
 	if health < -0.5:
 		die()
 
+func miss():
+	pass
+
 func die():
 	pass
 
