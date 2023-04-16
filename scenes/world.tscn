@@ -68,7 +68,7 @@ shape = 4
 material = SubResource("ShaderMaterial_etj4a")
 
 [node name="Player" parent="." instance=ExtResource("3_nktwx")]
-transform = Transform3D(-0.999668, 0, 0.0257582, 0, 1, 0, -0.0257582, 0, -0.999668, 67.3286, 12.1857, -85.3942)
+transform = Transform3D(0.642787, 0, -0.766044, 0, 1, 0, 0.766044, 0, 0.642787, -51.9022, 17.8223, -4.26045)
 
 [node name="Moon" type="DirectionalLight3D" parent="."]
 unique_name_in_owner = true
