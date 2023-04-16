@@ -17,7 +17,7 @@
 [ext_resource type="AudioStream" uid="uid://b441doe7xc86s" path="res://assets/sounds/SND_JUMP.wav" id="14_vd31i"]
 [ext_resource type="AudioStream" uid="uid://rrimnj5gntl6" path="res://assets/sounds/SND_LAND_YETI.wav" id="15_cdt5s"]
 [ext_resource type="AudioStream" uid="uid://cqa14st2u2d55" path="res://assets/sounds/SND_LAND_IMPACT.wav" id="15_ny7a2"]
-[ext_resource type="AudioStream" uid="uid://cywqnsvi1768o" path="res://assets/sounds/SND_SLASH_2.wav" id="16_ekiwi"]
+[ext_resource type="AudioStream" uid="uid://cc47hv4oxjw7i" path="res://assets/sounds/SND_SLASH_2.wav" id="16_ekiwi"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_cylrf"]
 radius = 0.3

@@ -5,12 +5,14 @@ extends RigidBody3D
 var shoot_tween
 var health = 3
 var is_shooting = false
+var getup_tween
 
 const UNAWARE = 0
 const SURPRISED = 1
 const SHOOTING = 2
 const RECOVERING = 3
 const SEARCHING = 4
+const STANDUP = 6
 
 var state = UNAWARE
 
@@ -81,10 +83,24 @@ func stop_shooting():
 
 func _physics_process(delta):
 	var dist = $RayCast3D.global_position.distance_to(player.global_position)
-	if state != RECOVERING:
+	if state != RECOVERING and state != STANDUP:
 		linear_velocity.y = -1
 		rotate_to_target(delta)
 		move_and_collide(Vector3(0, -10, 0))
+	elif state == STANDUP:
+		position.y += 1
+		move_and_collide(Vector3(0, -10, 0))
+		if rotation.z == 0 and rotation.x == 0:
+			state = SEARCHING
+			return
+		if rotation.x > 0:
+			rotation.x = max(rotation.x - delta * PI/2, 0)
+		if rotation.x < 0:
+			rotation.x = min(rotation.x + delta * PI/2, 0)
+		if rotation.z > 0:
+			rotation.z = max(rotation.z - delta * PI/2, 0)
+		if rotation.z < 0:
+			rotation.z = min(rotation.z + delta * PI/2, 0)
 	if state == UNAWARE:
 		stop_shooting()
 		if dist < 3:
@@ -162,6 +178,8 @@ func hit():
 	# if shoot_tween != null:
 	# 	shoot_tween.kill()
 	# $Gun.rotation.x = 0.1
+	if getup_tween:
+		getup_tween.kill()
 	
 	if health > 0:
 		$GetUp.start()
@@ -180,9 +198,13 @@ func hit():
 
 func _on_get_up_timeout():
 	freeze = true
-	rotation = Vector3(0, rotation.y, 0)
-	position.y += 2
-	state = SEARCHING
+	# rotation = Vector3(0, rotation.y, 0)
+#	position.y += 2
+#	getup_tween = create_tween()
+#	getup_tween.tween_property(self, "rotation:x", 0, 1)
+#	getup_tween.tween_property(self, "rotation:z", 0, 1)
+#	getup_tween.tween_callback(func(): state = SEARCHING)
+	state = STANDUP
 
 
 func _on_ai_tick_timeout():
@@ -192,7 +214,7 @@ func _on_ai_tick_timeout():
 	if state == SURPRISED:
 		target_rotation_y += (randf()-0.5)/2
 	if state == SEARCHING:
-		target_rotation_y += (randf()-0.5)*2
+		target_rotation_y += (randf()-0.5)*3
 
 
 func _on_surprise_timeout():
