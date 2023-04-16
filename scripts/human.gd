@@ -124,7 +124,7 @@ func rotate_to_target(delta):
 func shoot():
 	$Gun/SND_SHOOT.play()
 	
-	if randf() < 0.5:
+	if randf() < 0.1:
 		# play gunshot sound and hurt player
 		player.hit()
 		camera_3d.shake(0.5)

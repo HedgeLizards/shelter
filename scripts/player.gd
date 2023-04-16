@@ -131,7 +131,10 @@ func hit():
 		die()
 
 func miss():
-	pass
+	if randf() < 0.5:
+		$SND_MISS_LEFT.play()
+	else:
+		$SND_MISS_RIGHT.play()
 
 func die():
 	pass
