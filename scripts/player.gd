@@ -11,6 +11,14 @@ var hand_phase = 0
 var tween
 var low_pass_filter = AudioServer.get_bus_effect(1, 0)
 
+var health = 1.0
+
+signal health_changed
+
+func _ready():
+	
+	health_changed.emit(health)
+
 func _physics_process(delta):
 	var input_movement = Input.get_vector("left", "right", "forwards", "backwards")
 	var s = speed if not Input.is_action_pressed("sprint") else sprint_speed
@@ -62,18 +70,22 @@ func _physics_process(delta):
 	
 	# When inside, fade out frozen overlay
 	if ($Head/InsideTest.has_overlapping_areas()):
-		$"../CanvasLayer/Frozen".modulate.a -= .25 * delta
+		$"../Overlay/Frozen".modulate.a -= .25 * delta
 	
 	# When outside, fade in the frozen overlay
 	else:
-		$"../CanvasLayer/Frozen".modulate.a += .025 * delta
+		$"../Overlay/Frozen".modulate.a += .025 * delta
 	
-	$"../CanvasLayer/Frozen".modulate.a = clamp($"../CanvasLayer/Frozen".modulate.a, 0, 1)
+	$"../Overlay/Frozen".modulate.a = clamp($"../Overlay/Frozen".modulate.a, 0, 1)
 	
 	if (Input.is_action_pressed("sprint")):
 		$"../BGM".crossfade_buses("Music_Walk", "Music_Run", 4)
 	else:
 		$"../BGM".crossfade_buses("Music_Run", "Music_Walk", 4)
+	
+	if health < 1.0:
+		health += delta / 10
+		health_changed.emit(health)
 	
 	
 func _input(event):
@@ -109,3 +121,13 @@ func slash():
 	
 	for body in $SlashArea.get_overlapping_bodies():
 		body.hit()
+
+func hit():
+	health -= 0.5;
+	health_changed.emit(health)
+	if health < -0.5:
+		die()
+
+func die():
+	pass
+
