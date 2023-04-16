@@ -51,19 +51,20 @@ size = Vector3(0.1, 0.1, 0.1)
 transform = Transform3D(1.00264, 0, 0, 0, 1.00264, 0, 0, 0, 1.00264, 0, 0, 0)
 
 [node name="AudioStreamPlayer3D" type="AudioStreamPlayer3D" parent="."]
+transform = Transform3D(0.997367, 0, 0, 0, 0.997367, 0, 0, 0, 0.997367, -0.000126638, 0.749891, -0.00061982)
 stream = ExtResource("1_c3tff")
 autoplay = true
 max_distance = 20.0
 
 [node name="Flames" type="MeshInstance3D" parent="."]
-transform = Transform3D(1.333, 0, 0, 0, 2.94799, 0, 0, 0, 1.333, 0, 5.34866, 0)
+transform = Transform3D(0.890088, 0, 0, 0, 1.96847, 0, 0, 0, 0.890088, -0.000126638, 4.32137, -0.00061982)
 visible = false
 cast_shadow = 0
 mesh = ExtResource("2_4itrw")
 surface_material_override/0 = SubResource("ShaderMaterial_fdxe0")
 
 [node name="OmniLight3D" type="OmniLight3D" parent="."]
-transform = Transform3D(0.99737, 0, 0, 0, 0.99737, 0, 0, 0, 0.99737, 0, 2.84487, 0)
+transform = Transform3D(0.997367, 0, 0, 0, 0.997367, 0, 0, 0, 0.997367, -0.000126638, 2.6495, -0.00061982)
 light_color = Color(0.992157, 0.572549, 0, 1)
 light_energy = 5.0
 light_bake_mode = 1
@@ -73,10 +74,10 @@ omni_range = 50.0
 omni_shadow_mode = 0
 
 [node name="barrel" parent="." instance=ExtResource("4_ewpqr")]
-transform = Transform3D(1.29263, 0, 0, 0, 1.29263, 0, 0, 0, 1.29263, 2.08165e-12, 0.952074, 2.08165e-12)
+transform = Transform3D(0.863132, 0, 0, 0, 0.863132, 0, 0, 0, 0.863132, -0.000126638, 1.38562, -0.00061982)
 
 [node name="GPUParticles3D" type="GPUParticles3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.00190566, 2.13886, -0.00932714)
+transform = Transform3D(0.667733, 0, 0, 0, 0.667733, 0, 0, 0, 0.667733, -0.00139911, 2.17808, -0.00684786)
 cast_shadow = 0
 gi_mode = 0
 amount = 1000

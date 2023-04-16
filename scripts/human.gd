@@ -66,6 +66,7 @@ func can_shoot_player():
 
 func start_shooting():
 	if not is_shooting:
+		
 		shoot_tween = create_tween().set_process_mode(Tween.TWEEN_PROCESS_PHYSICS)
 
 		shoot_tween.tween_property($Gun, "rotation:x", -0.5 * PI, 1 - $Gun.rotation.x / (-0.25 * PI))
@@ -73,7 +74,7 @@ func start_shooting():
 		is_shooting = true
 
 func stop_shooting():
-
+	
 	if shoot_tween != null:
 		shoot_tween.kill()
 	# shoot_tween = create_tween().set_process_mode(Tween.TWEEN_PROCESS_PHYSICS)
@@ -102,6 +103,7 @@ func _physics_process(delta):
 		if rotation.z < 0:
 			rotation.z = min(rotation.z + delta * PI/2, 0)
 	if state == UNAWARE:
+		$HumanAnimationPlayer.play("hu_anims/idle")
 		stop_shooting()
 		if dist < 3:
 			state = SHOOTING
@@ -113,6 +115,7 @@ func _physics_process(delta):
 			return
 	
 	if state == SHOOTING:
+		$HumanAnimationPlayer.play("hu_anims/crouch_aim")
 		if dist > $Flashlight/SpotLight3D.spot_range*1.5:
 			state = SEARCHING
 			$Searching.start()
