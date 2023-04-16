@@ -84,6 +84,7 @@ func _physics_process(delta):
 	if state != RECOVERING:
 		linear_velocity.y = -1
 		rotate_to_target(delta)
+		move_and_collide(Vector3(0, -10, 0))
 	if state == UNAWARE:
 		stop_shooting()
 		if dist < 3:
@@ -180,7 +181,7 @@ func hit():
 func _on_get_up_timeout():
 	freeze = true
 	rotation = Vector3(0, rotation.y, 0)
-	position.y += 1
+	position.y += 2
 	state = SEARCHING
 
 
