@@ -1,6 +1,7 @@
-[gd_scene load_steps=7 format=3 uid="uid://c6sj87wf6aicq"]
+[gd_scene load_steps=9 format=3 uid="uid://c6sj87wf6aicq"]
 
 [ext_resource type="Script" path="res://scripts/human.gd" id="1_vveyi"]
+[ext_resource type="AudioStream" uid="uid://du7jxf8srd4wr" path="res://assets/sounds/SND_SHOOT.wav" id="2_7s20h"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_nckqd"]
 size = Vector3(0.587104, 1.88095, 0.508521)
@@ -23,6 +24,13 @@ size = Vector3(0.1, 0.1, 0.4)
 resource_local_to_scene = true
 material = SubResource("StandardMaterial3D_6p7uq")
 size = Vector3(0.1, 1.2, 0.1)
+
+[sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_ge0ia"]
+streams_count = 1
+random_pitch = 1.02
+random_volume_offset_db = 0.0
+stream_0/stream = ExtResource("2_7s20h")
+stream_0/weight = 1.0
 
 [node name="Human" type="RigidBody3D" groups=["humans"]]
 collision_layer = 4
@@ -63,6 +71,10 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.3, 0, -0.25)
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.05, 0.55, -0.05)
 mesh = SubResource("BoxMesh_2rxik")
 skeleton = NodePath("../..")
+
+[node name="SND_SHOOT" type="AudioStreamPlayer3D" parent="Gun"]
+stream = SubResource("AudioStreamRandomizer_ge0ia")
+bus = &"Enemy"
 
 [node name="RayCast3D" type="RayCast3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.7, -0.25)

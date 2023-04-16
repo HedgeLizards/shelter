@@ -61,10 +61,11 @@ func _physics_process(delta):
 			rotation.y += TAU
 
 func shoot():
+	$Gun/SND_SHOOT.play()
+	
 	if randf() < 0.5:
 		# play gunshot sound and hurt player
 		player.hit()
-
 		camera_3d.shake(0.5)
 	else:
 		player.miss()
