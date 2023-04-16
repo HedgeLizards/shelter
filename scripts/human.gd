@@ -112,7 +112,7 @@ func _physics_process(delta):
 
 
 func rotate_to_target(delta):
-	var d = delta * 2
+	var d = delta * 1.5
 	var r = rad_sub(target_rotation_y, rotation.y)
 	if abs(r) < d:
 		return
@@ -186,7 +186,7 @@ func _on_get_up_timeout():
 
 func _on_ai_tick_timeout():
 	if state == UNAWARE:
-		if randf() < 0.1:
+		if randf() < 0.2:
 			target_rotation_y += randf()-0.5
 	if state == SURPRISED:
 		target_rotation_y += (randf()-0.5)/2
