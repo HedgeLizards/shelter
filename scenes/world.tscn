@@ -32,14 +32,11 @@ tonemap_white = 5.2
 glow_bloom = 0.55
 fog_enabled = true
 fog_light_color = Color(0, 0, 0, 1)
-fog_light_energy = 0.5
+fog_density = 0.005
 fog_sky_affect = 0.0
 volumetric_fog_enabled = true
 volumetric_fog_density = 0.0
-volumetric_fog_emission = Color(0.392157, 0.392157, 0.392157, 1)
 volumetric_fog_emission_energy = 0.0
-volumetric_fog_gi_inject = 0.29
-volumetric_fog_detail_spread = 2.27358
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_etj4a"]
 shader = ExtResource("5_yrd2i")
