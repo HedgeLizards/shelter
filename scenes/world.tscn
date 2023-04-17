@@ -1,4 +1,4 @@
-[gd_scene load_steps=20 format=3 uid="uid://d0ybs7e25b728"]
+[gd_scene load_steps=21 format=3 uid="uid://d0ybs7e25b728"]
 
 [ext_resource type="Shader" path="res://shaders/sky.gdshader" id="1_23ay3"]
 [ext_resource type="Texture2D" uid="uid://ypnlftyw5ohh" path="res://assets/stars.png" id="2_ypvou"]
@@ -11,7 +11,8 @@
 [ext_resource type="PackedScene" uid="uid://514iq610q8fs" path="res://scenes/bgm.tscn" id="8_wvepe"]
 [ext_resource type="Shader" path="res://shaders/damage.gdshader" id="9_48pi5"]
 [ext_resource type="Texture2D" uid="uid://86xbv588trlq" path="res://assets/textures/frost.png" id="9_jkdtj"]
-[ext_resource type="PackedScene" uid="uid://c3d5vc64wts31" path="res://scenes/newlevel.tscn" id="10_tyt72"]
+[ext_resource type="PackedScene" uid="uid://dnxdixu10e0iw" path="res://scenes/newlevel.tscn" id="10_tyt72"]
+[ext_resource type="PackedScene" uid="uid://cxaj6bsw6tnse" path="res://scenes/tree.tscn" id="13_nlicq"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_nq0oj"]
 shader = ExtResource("1_23ay3")
@@ -173,6 +174,30 @@ transform = Transform3D(6.15606, 0, 0, 0, 6.00086, 0, 0, 0, 6.40759, -9.65639, 5
 material = SubResource("FogMaterial_mcypa")
 
 [node name="newlevel" parent="." instance=ExtResource("10_tyt72")]
-transform = Transform3D(5, 0, 0, 0, 5, 0, 0, 0, 5, 2.08165e-12, 2.08165e-12, 2.08165e-12)
+transform = Transform3D(4.99821, 0, 0, 0, 4.99821, 0, 0, 0, 4.99821, 2.08165e-12, 2.08165e-12, 2.08165e-12)
+
+[node name="Node3D" parent="." instance=ExtResource("13_nlicq")]
+transform = Transform3D(0.342676, 0, -0.939454, 0, 1, 0, 0.939454, 0, 0.342676, 65.4456, -22.5392, -3.58681)
+
+[node name="Node3D2" parent="." instance=ExtResource("13_nlicq")]
+transform = Transform3D(0.772224, 0, 0.635351, 0, 1, 0, -0.635351, 0, 0.772224, 74.0407, -19.6183, 17.4484)
+
+[node name="Node3D3" parent="." instance=ExtResource("13_nlicq")]
+transform = Transform3D(0.780403, 0, 0, 0, 0.775917, 0.0835517, 0, -0.0835517, 0.775917, 89.2148, -23.2589, -15.7549)
+
+[node name="Node3D4" parent="." instance=ExtResource("13_nlicq")]
+transform = Transform3D(0.78252, 0.0357716, -0.621597, -0.0280099, 0.99936, 0.0222498, 0.621996, -1.15365e-17, 0.783021, 102.531, -20.3971, 5.05378)
+
+[node name="Node3D5" parent="." instance=ExtResource("13_nlicq")]
+transform = Transform3D(1.06085, 0, -0.714716, 0, 1.27915, 0, 0.714716, 0, 1.06085, 88.8694, -22.165, 0.658806)
+
+[node name="Node3D6" parent="." instance=ExtResource("13_nlicq")]
+transform = Transform3D(-0.519971, 0, -0.754079, 0, 0.915972, 0, 0.754079, 0, -0.519971, 92.3616, -16.5765, 28.0656)
+
+[node name="Node3D7" parent="." instance=ExtResource("13_nlicq")]
+transform = Transform3D(0.492796, -0.0401342, 0.869219, 0.0811731, 0.9967, -1.03427e-16, -0.86635, 0.0705572, 0.494427, 109.496, -17.1325, 17.1846)
+
+[node name="Node3D8" parent="." instance=ExtResource("13_nlicq")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 102.596, -22.3165, -7.96216)
 
 [connection signal="health_changed" from="Player" to="Overlay" method="_on_player_health_changed"]
