@@ -27,7 +27,7 @@ height = 3.0
 radius = 0.1
 
 [sub_resource type="CylinderShape3D" id="CylinderShape3D_khg6r"]
-height = 1.0
+height = 8.0
 radius = 10.0
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_q2e73"]
