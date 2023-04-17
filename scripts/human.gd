@@ -45,7 +45,7 @@ func _ready():
 
 func can_see_player():
 	var dist = $RayCast3D.global_position.distance_to(player.global_position)
-	if dist <= $Flashlight/SpotLight3D.spot_range:
+	if dist <= $Body/Armature/Skeleton3D/BoneAttachment3D/rifle2/SpotLight3D.spot_range:
 		if $RayCast3D.global_position.direction_to(player.global_position).dot(transform.basis.z) < -0.3:
 			$RayCast3D.target_position = (player.global_position - $RayCast3D.global_position).rotated(Vector3.UP, -rotation.y)
 			$RayCast3D.force_raycast_update()
@@ -56,7 +56,7 @@ func can_see_player():
 
 func can_shoot_player():
 	var dist = $RayCast3D.global_position.distance_to(player.global_position)
-	if dist <= $Flashlight/SpotLight3D.spot_range:
+	if dist <= $Body/Armature/Skeleton3D/BoneAttachment3D/rifle2/SpotLight3D.spot_range:
 		if $RayCast3D.global_position.direction_to(player.global_position).dot(transform.basis.z) < -0.6:
 			$RayCast3D.target_position = (player.global_position - $RayCast3D.global_position).rotated(Vector3.UP, -rotation.y)
 			$RayCast3D.force_raycast_update()
@@ -116,7 +116,7 @@ func _physics_process(delta):
 	
 	if state == SHOOTING:
 		$HumanAnimationPlayer.play("hu_anims/crouch_aim")
-		if dist > $Flashlight/SpotLight3D.spot_range*1.5:
+		if dist > $Body/Armature/Skeleton3D/BoneAttachment3D/rifle2/SpotLight3D.spot_range*1.5:
 			state = SEARCHING
 			$Searching.start()
 			return

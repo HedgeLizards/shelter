@@ -38,7 +38,7 @@ turbulence_noise_scale = 0.1
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_n7dop"]
 blend_mode = 1
 shading_mode = 0
-albedo_color = Color(0.992157, 0.607843, 0, 1)
+albedo_color = Color(0.992157, 0.282353, 0, 1)
 disable_receive_shadows = true
 shadow_to_opacity = true
 
@@ -65,8 +65,9 @@ surface_material_override/0 = SubResource("ShaderMaterial_fdxe0")
 
 [node name="OmniLight3D" type="OmniLight3D" parent="."]
 transform = Transform3D(0.997367, 0, 0, 0, 0.997367, 0, 0, 0, 0.997367, -0.000126638, 2.6495, -0.00061982)
-light_color = Color(0.992157, 0.572549, 0, 1)
-light_energy = 5.0
+light_color = Color(0.929412, 0.560784, 0.301961, 1)
+light_energy = 7.0
+light_volumetric_fog_energy = 1.25
 light_bake_mode = 1
 shadow_enabled = true
 shadow_blur = 0.0
@@ -80,11 +81,11 @@ transform = Transform3D(0.863132, 0, 0, 0, 0.863132, 0, 0, 0, 0.863132, -0.00012
 transform = Transform3D(0.667733, 0, 0, 0, 0.667733, 0, 0, 0, 0.667733, -0.00139911, 2.17808, -0.00684786)
 cast_shadow = 0
 gi_mode = 0
-amount = 1000
-lifetime = 3.0
+amount = 2500
+lifetime = 7.5
 explosiveness = 0.12
 randomness = 0.33
 interpolate = false
-trail_lifetime = 2.46
+trail_enabled = true
 process_material = SubResource("ParticleProcessMaterial_wr46a")
 draw_pass_1 = SubResource("BoxMesh_6c2x5")

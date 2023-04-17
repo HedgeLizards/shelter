@@ -141,7 +141,7 @@ transform = Transform3D(-0.396235, 0, -0.918149, 0, 1, 0, 0.918149, 0, -0.396235
 player = NodePath("../Player")
 
 [node name="Human3" parent="." node_paths=PackedStringArray("player") instance=ExtResource("8_ktiaq")]
-transform = Transform3D(-0.828871, 0, 0.559439, 0, 1, 0, -0.559439, 0, -0.828871, 76.6754, -14.8198, -15.8541)
+transform = Transform3D(-0.828871, 0, 0.559439, 0, 1, 0, -0.559439, 0, -0.828871, 76.6754, -20.8272, -15.8541)
 player = NodePath("../Player")
 
 [node name="Human4" parent="." node_paths=PackedStringArray("player") instance=ExtResource("8_ktiaq")]
