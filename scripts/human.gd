@@ -172,8 +172,8 @@ func hit():
 	freeze = false
 	
 	var dir = player.position.direction_to(position)
-	dir.y = 0.5
-	linear_velocity = dir * 20
+	dir.y = 0.8
+	linear_velocity = dir * 25
 	angular_velocity = Vector3(2, randf()-.5, 0)
 	state = RECOVERING
 

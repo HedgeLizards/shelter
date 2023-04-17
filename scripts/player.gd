@@ -6,7 +6,7 @@ const speed = 8
 const sprint_speed = 24
 const gravity = 90
 
-var v_speed = 0.0
+var last_velocity = Vector3(0,0,0)
 var head_phase = 0
 var hand_phase = 0
 var tween
@@ -36,11 +36,12 @@ func _physics_process(delta):
 		s = speed
 	
 	if is_on_floor():
-		if v_speed < 0:
-			$Head/Camera3D.shake(v_speed / -110)
+		if last_velocity.y < 0:
+			$Head/Camera3D.shake(last_velocity.y / -110)
 			
-			for body in $SmashArea.get_overlapping_bodies():
-				body.hit()
+			if last_velocity.y < -40:
+				for body in $SmashArea.get_overlapping_bodies():
+					body.hit()
 			
 			$SND_STEP.play()
 			
@@ -56,21 +57,22 @@ func _physics_process(delta):
 			$SND_JUMP.play()
 			was_jumping = true
 			is_stealth = false
-			v_speed = 90
+			velocity.y = 90
 		else:
-			v_speed = 0
+			velocity.y = 0
 			
 		if Input.is_action_just_pressed("stealth"):
 			is_stealth = !is_stealth
-			print(is_stealth)
 		
 	else:
-		v_speed -= gravity * delta
+		velocity.y -= gravity * delta
 
 	if Input.is_action_pressed("fly"):
-		v_speed = 20
+		velocity.y = 20
 	
-	velocity = Vector3(input_movement.x * s, v_speed, input_movement.y * s).rotated(Vector3.UP, rotation.y)
+	velocity = Vector3(input_movement.x * s, velocity.y, input_movement.y * s).rotated(Vector3.UP, rotation.y)
+	
+	last_velocity = velocity
 	
 	move_and_slide()
 	
