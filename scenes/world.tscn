@@ -61,6 +61,7 @@ script = ExtResource("3_mo3qo")
 
 [node name="Fog" type="Node3D" parent="."]
 transform = Transform3D(-0.999668, 0, 0.0257582, 0, 1, 0, -0.0257582, 0, -0.999668, 139.694, 0, -391.051)
+visible = false
 
 [node name="FogVolume" type="FogVolume" parent="Fog"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 67.3286, 12.1857, -196.425)
@@ -79,6 +80,9 @@ shadow_enabled = true
 
 [node name="Fire" parent="." instance=ExtResource("7_aggce")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 86.282, -22.1247, 7.81827)
+
+[node name="Fire2" parent="." instance=ExtResource("7_aggce")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 125.979, -23.2615, -42.6231)
 
 [node name="BGM" parent="." instance=ExtResource("8_wvepe")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 52.7469, 0)
@@ -162,6 +166,82 @@ player = NodePath("../Player")
 
 [node name="Human7" parent="." node_paths=PackedStringArray("player") instance=ExtResource("8_ktiaq")]
 transform = Transform3D(0.959269, 0, -0.282492, 0, 1, 0, 0.282492, 0, 0.959269, 84.1611, -17.0875, -6.61269)
+player = NodePath("../Player")
+
+[node name="Human13" parent="." node_paths=PackedStringArray("player") instance=ExtResource("8_ktiaq")]
+transform = Transform3D(0.959269, 0, -0.282492, 0, 1, 0, 0.282492, 0, 0.959269, 95.8091, -17.0875, -7.09441)
+player = NodePath("../Player")
+
+[node name="Human14" parent="." node_paths=PackedStringArray("player") instance=ExtResource("8_ktiaq")]
+transform = Transform3D(0.959269, 0, -0.282492, 0, 1, 0, 0.282492, 0, 0.959269, 84.3035, -17.0875, 0.271251)
+player = NodePath("../Player")
+
+[node name="Human15" parent="." node_paths=PackedStringArray("player") instance=ExtResource("8_ktiaq")]
+transform = Transform3D(0.959269, 0, -0.282492, 0, 1, 0, 0.282492, 0, 0.959269, 75.3023, -17.0875, 6.93131)
+player = NodePath("../Player")
+
+[node name="Human16" parent="." node_paths=PackedStringArray("player") instance=ExtResource("8_ktiaq")]
+transform = Transform3D(0.959269, 0, -0.282492, 0, 1, 0, 0.282492, 0, 0.959269, 76.1143, -17.0875, 0.310391)
+player = NodePath("../Player")
+
+[node name="Human17" parent="." node_paths=PackedStringArray("player") instance=ExtResource("8_ktiaq")]
+transform = Transform3D(0.959269, 0, -0.282492, 0, 1, 0, 0.282492, 0, 0.959269, 135.842, -17.0875, -38.1886)
+player = NodePath("../Player")
+
+[node name="Human18" parent="." node_paths=PackedStringArray("player") instance=ExtResource("8_ktiaq")]
+transform = Transform3D(0.959269, 0, -0.282492, 0, 1, 0, 0.282492, 0, 0.959269, 54.1288, -17.0875, 15.7152)
+player = NodePath("../Player")
+
+[node name="Human19" parent="." node_paths=PackedStringArray("player") instance=ExtResource("8_ktiaq")]
+transform = Transform3D(0.959269, 0, -0.282492, 0, 1, 0, 0.282492, 0, 0.959269, 83.6879, -13.7142, 33.8627)
+player = NodePath("../Player")
+
+[node name="Human20" parent="." node_paths=PackedStringArray("player") instance=ExtResource("8_ktiaq")]
+transform = Transform3D(0.959269, 0, -0.282492, 0, 1, 0, 0.282492, 0, 0.959269, 91.5889, -13.7142, 18.9466)
+player = NodePath("../Player")
+
+[node name="Human21" parent="." node_paths=PackedStringArray("player") instance=ExtResource("8_ktiaq")]
+transform = Transform3D(0.959269, 0, -0.282492, 0, 1, 0, 0.282492, 0, 0.959269, 100.687, -13.7142, 11.0438)
+player = NodePath("../Player")
+
+[node name="Human22" parent="." node_paths=PackedStringArray("player") instance=ExtResource("8_ktiaq")]
+transform = Transform3D(0.959269, 0, -0.282492, 0, 1, 0, 0.282492, 0, 0.959269, 102.832, -13.7142, 0.21552)
+player = NodePath("../Player")
+
+[node name="Human23" parent="." node_paths=PackedStringArray("player") instance=ExtResource("8_ktiaq")]
+transform = Transform3D(0.959269, 0, -0.282492, 0, 1, 0, 0.282492, 0, 0.959269, 68.9758, -13.7142, 16.8145)
+player = NodePath("../Player")
+
+[node name="Human24" parent="." node_paths=PackedStringArray("player") instance=ExtResource("8_ktiaq")]
+transform = Transform3D(0.959269, 0, -0.282492, 0, 1, 0, 0.282492, 0, 0.959269, 71.827, -13.7142, 24.1415)
+player = NodePath("../Player")
+
+[node name="Human25" parent="." node_paths=PackedStringArray("player") instance=ExtResource("8_ktiaq")]
+transform = Transform3D(0.959269, 0, -0.282492, 0, 1, 0, 0.282492, 0, 0.959269, 119.784, -13.7142, -23.052)
+player = NodePath("../Player")
+
+[node name="Human26" parent="." node_paths=PackedStringArray("player") instance=ExtResource("8_ktiaq")]
+transform = Transform3D(0.959269, 0, -0.282492, 0, 1, 0, 0.282492, 0, 0.959269, 121.69, -13.7142, -46.8112)
+player = NodePath("../Player")
+
+[node name="Human27" parent="." node_paths=PackedStringArray("player") instance=ExtResource("8_ktiaq")]
+transform = Transform3D(0.959269, 0, -0.282492, 0, 1, 0, 0.282492, 0, 0.959269, 133.004, -13.7142, -53.7007)
+player = NodePath("../Player")
+
+[node name="Human28" parent="." node_paths=PackedStringArray("player") instance=ExtResource("8_ktiaq")]
+transform = Transform3D(0.959269, 0, -0.282492, 0, 1, 0, 0.282492, 0, 0.959269, 139.169, -13.7142, -46.9536)
+player = NodePath("../Player")
+
+[node name="Human29" parent="." node_paths=PackedStringArray("player") instance=ExtResource("8_ktiaq")]
+transform = Transform3D(0.959269, 0, -0.282492, 0, 1, 0, 0.282492, 0, 0.959269, 127.168, -13.7142, -26.93)
+player = NodePath("../Player")
+
+[node name="Human30" parent="." node_paths=PackedStringArray("player") instance=ExtResource("8_ktiaq")]
+transform = Transform3D(0.959269, 0, -0.282492, 0, 1, 0, 0.282492, 0, 0.959269, 117.248, -13.7142, -32.8853)
+player = NodePath("../Player")
+
+[node name="Human31" parent="." node_paths=PackedStringArray("player") instance=ExtResource("8_ktiaq")]
+transform = Transform3D(0.959269, 0, -0.282492, 0, 1, 0, 0.282492, 0, 0.959269, 122.178, -13.7142, -32.018)
 player = NodePath("../Player")
 
 [node name="Back of Cave" type="Node3D" parent="."]
