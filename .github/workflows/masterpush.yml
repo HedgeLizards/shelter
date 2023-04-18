@@ -15,6 +15,13 @@ jobs:
     # Job name, can be anything
     name: Export Game
     steps:
+    - name: Prepare Vulkan SDK
+      uses: humbletim/setup-vulkan-sdk@v1.2.0
+      with:
+        vulkan-query-version: 1.3.204.0
+        vulkan-components: Vulkan-Headers, Vulkan-Loader
+        vulkan-use-cache: true
+
       # Always include the checkout step so that
       # your project is available for Godot to export
     - name: checkout
