@@ -11,7 +11,7 @@ const JUMP = "Music_Jump"
 
 
 var tracks = [STEALTH, WALK, RUN, COMBAT, JUMP]
-var fadein_duration = 0.1
+var fadein_duration = 0.25
 var fadeout_duration = 4
 var current_track = WALK
 
