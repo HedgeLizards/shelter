@@ -3,7 +3,7 @@
 [ext_resource type="AudioStream" uid="uid://yvcxewmkkkt2" path="res://assets/sounds/SND_FIRE.ogg" id="1_c3tff"]
 [ext_resource type="ArrayMesh" uid="uid://pyf4i4vyj7cl" path="res://assets/firemesh.obj" id="2_4itrw"]
 [ext_resource type="Shader" path="res://shaders/flames.gdshader" id="2_xko0k"]
-[ext_resource type="PackedScene" uid="uid://cvwu0upw7yw8c" path="res://scenes/barrel.tscn" id="4_ewpqr"]
+[ext_resource type="PackedScene" path="res://scenes/barrel.tscn" id="4_ewpqr"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_fdxe0"]
 render_priority = 0
