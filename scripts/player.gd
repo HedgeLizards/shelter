@@ -53,11 +53,8 @@ func _physics_process(delta):
 				$SND_LAND_YETI.play()
 				$SND_LAND_IMPACT.play()
 				was_jumping = false
-#			if was_jumping:
-#				$"../BGM".crossfade_buses("Music_Walk", 4)
 		
 		if Input.is_action_pressed("jump"):
-#			$"../BGM".crossfade_buses("Music_Jump", 4)
 			$SND_JUMP.play()
 			was_jumping = true
 			if is_stealth:
@@ -129,11 +126,6 @@ func _physics_process(delta):
 	
 	$Overlay/Frozen.modulate.a = clamp($Overlay/Frozen.modulate.a, 0, .15)
 	
-#	if (Input.is_action_pressed("sprint")):
-#		$"../BGM".crossfade_buses("Music_Run", 4)
-#	elif (Input.is_action_pressed("sprint") and was_jumping):
-#		$"../BGM".crossfade_buses("Music_Walk", 4)
-	
 	var engaged = false
 	
 	var nodes_in_group = get_tree().get_nodes_in_group("humans")
@@ -143,22 +135,17 @@ func _physics_process(delta):
 			break
 	
 	var bgm = $"../BGM"
-		
-	if was_jumping and not is_on_floor() :
-		bgm.crossfade_buses(bgm.JUMP,4)
-		bgm.mute_atmosphere(false)
+	
+	if was_jumping and not is_on_floor():
+		bgm.crossfade_buses(bgm.JUMP, 4, false)
 	elif sprinting and not engaged:
-		bgm.crossfade_buses(bgm.RUN,4)
-		bgm.mute_atmosphere(false)
+		bgm.crossfade_buses(bgm.RUN, 4, false)
 	elif engaged:
-		bgm.crossfade_buses(bgm.COMBAT,4)
-		bgm.mute_atmosphere(false)
+		bgm.crossfade_buses(bgm.COMBAT, 4, false)
 	elif is_stealth and not engaged:
-		bgm.crossfade_buses(bgm.STEALTH, 4)
-		bgm.mute_atmosphere(true)
+		bgm.crossfade_buses(bgm.STEALTH, 4, true)
 	else:
-		bgm.crossfade_buses(bgm.WALK,4)
-		bgm.mute_atmosphere(false)
+		bgm.crossfade_buses(bgm.WALK, 4, false)
 	
 	if health < 1.0:
 		health += delta / 10

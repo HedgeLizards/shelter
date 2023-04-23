@@ -35,7 +35,7 @@ func rad_sub(a, b):
 	return d
 
 func rad_abs(a):
-	var d = fposmod(a, 2*PI)
+	# var d = fposmod(a, 2*PI)
 	return min(a, 2*PI - a)
 
 
