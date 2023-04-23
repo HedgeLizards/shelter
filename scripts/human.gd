@@ -188,7 +188,7 @@ func hit():
 		$GetUp.start()
 	else:
 		var hit_tween = create_tween()
-		hit_tween.parallel().tween_property($Body/MeshInstance3D, "mesh:material:albedo_color:a", 0, 2)
+		hit_tween.parallel().tween_property(%HumanModel, "transparency", 1, 2)
 		hit_tween.tween_callback(queue_free)
 		
 		if shoot_tween != null:
