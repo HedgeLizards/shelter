@@ -14,11 +14,9 @@ var was_jumping = false
 var is_stealth = false;
 var health = 1.0
 
-signal health_changed
+var last_hits = PackedVector3Array([Vector3(), Vector3(), Vector3(), Vector3(), Vector3(), Vector3()])
+var last_hit_id = 0
 
-func _ready():
-	
-	health_changed.emit(health)
 
 func _physics_process(delta):
 	#print(AudioServer.get_bus_volume_db(AudioServer.get_bus_index("Music_Jump")))
@@ -108,13 +106,13 @@ func _physics_process(delta):
 	
 	# When inside, fade out frozen overlay
 	if ($Head/InsideTest.has_overlapping_areas()):
-		$"../Overlay/Frozen".modulate.a -= .25 * delta
+		$Overlay/Frozen.modulate.a -= .25 * delta
 	
 	# When outside, fade in the frozen overlay
 	else:
-		$"../Overlay/Frozen".modulate.a += .025 * delta
+		$Overlay/Frozen.modulate.a += .025 * delta
 	
-	$"../Overlay/Frozen".modulate.a = clamp($"../Overlay/Frozen".modulate.a, 0, .15)
+	$Overlay/Frozen.modulate.a = clamp($Overlay/Frozen.modulate.a, 0, .15)
 	
 #	if (Input.is_action_pressed("sprint")):
 #		$"../BGM".crossfade_buses("Music_Run", 4)
@@ -149,7 +147,9 @@ func _physics_process(delta):
 	
 	if health < 1.0:
 		health += delta / 10
-		health_changed.emit(health)
+		
+	$Overlay/Damage.material.set_shader_parameter("health", health)
+	$Overlay/Damage.material.set_shader_parameter("time", float(Time.get_ticks_msec()) / 1000.0)
 	
 	
 func _input(event):
@@ -191,8 +191,15 @@ func slash():
 func hit():
 	if !$SND_HIT.playing:
 		$SND_HIT.play()
-	health -= 0.5;
-	health_changed.emit(health)
+	
+	last_hits[last_hit_id] = Vector3(
+		randf_range(0.1, 0.9),
+		randf_range(0.1, 0.9),
+		float(Time.get_ticks_msec()) / 1000.0
+		)
+	last_hit_id = (last_hit_id + 1) % last_hits.size()
+	$Overlay/Damage.material.set_shader_parameter("hits", last_hits)
+	health -= 0.3;
 	if health < -0.5:
 		die()
 

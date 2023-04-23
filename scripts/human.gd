@@ -69,7 +69,7 @@ func start_shooting():
 		
 		shoot_tween = create_tween().set_process_mode(Tween.TWEEN_PROCESS_PHYSICS)
 
-		shoot_tween.tween_property($Gun, "rotation:x", -0.5 * PI, 1 - $Gun.rotation.x / (-0.25 * PI))
+		shoot_tween.tween_property($Gun, "rotation:x", -0.5 * PI, 1 - $Gun.rotation.x / (-0.25 * PI) * randf_range(0.9, 1.1))
 		shoot_tween.tween_callback(shoot).set_delay(0.5)
 		is_shooting = true
 
@@ -154,7 +154,7 @@ func shoot():
 	shoot_tween = create_tween().set_process_mode(Tween.TWEEN_PROCESS_PHYSICS)
 
 	shoot_tween.tween_property($Gun, "rotation:x", -0.25 * PI, 0.1)
-	shoot_tween.tween_callback(shoot_again).set_delay(1)
+	shoot_tween.tween_callback(shoot_again).set_delay(randf_range(0.8, 1.3))
 
 func shoot_again():
 	shoot_tween = create_tween().set_process_mode(Tween.TWEEN_PROCESS_PHYSICS)

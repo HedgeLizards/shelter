@@ -61,6 +61,8 @@ radius = 8.12869
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_sa4w2"]
 shader = ExtResource("9_48pi5")
 shader_parameter/health = 0.0
+shader_parameter/time = null
+shader_parameter/hits = null
 
 [sub_resource type="FogMaterial" id="FogMaterial_mcypa"]
 density = -8.0
@@ -114,11 +116,11 @@ monitoring = false
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.631648)
 shape = SubResource("SphereShape3D_aqr61")
 
-[node name="Overlay" type="CanvasLayer" parent="."]
+[node name="Overlay__" type="CanvasLayer" parent="."]
+visible = false
 script = ExtResource("8_v1pw2")
 
-[node name="Frozen" type="TextureRect" parent="Overlay"]
-unique_name_in_owner = true
+[node name="Frozen" type="TextureRect" parent="Overlay__"]
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
@@ -128,7 +130,7 @@ texture = ExtResource("9_jkdtj")
 expand_mode = 1
 metadata/_edit_use_anchors_ = true
 
-[node name="Damage" type="ColorRect" parent="Overlay"]
+[node name="Damage" type="ColorRect" parent="Overlay__"]
 material = SubResource("ShaderMaterial_sa4w2")
 anchors_preset = 15
 anchor_right = 1.0
@@ -271,5 +273,3 @@ material = SubResource("FogMaterial_mcypa")
 
 [node name="newlevel" parent="." instance=ExtResource("10_tyt72")]
 transform = Transform3D(5, 0, 0, 0, 5, 0, 0, 0, 5, 2.08165e-12, 2.08165e-12, 2.08165e-12)
-
-[connection signal="health_changed" from="Player" to="Overlay" method="_on_player_health_changed"]
