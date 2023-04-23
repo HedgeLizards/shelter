@@ -7,9 +7,11 @@ const sprint_speed = 24
 const gravity = 90
 
 var last_velocity = Vector3(0,0,0)
+var head_center = 1.2
 var head_phase = 0
 var hand_phase = 0
-var tween
+var stealth_tween
+var slash_tween
 var was_jumping = false
 var is_stealth = false;
 var health = 1.0
@@ -27,7 +29,11 @@ func _physics_process(delta):
 	
 	if sprinting:
 		s = sprint_speed
-		is_stealth = false
+		if is_stealth:
+			is_stealth = false
+			stealth_tween.kill()
+			stealth_tween = create_tween().set_trans(Tween.TRANS_SINE)
+			stealth_tween.tween_property(self, "head_center", 1.2, 0.3 / 1.1 * (1.2 - head_center))
 	elif is_stealth:
 		s = stealth_speed
 	else:
@@ -54,13 +60,22 @@ func _physics_process(delta):
 #			$"../BGM".crossfade_buses("Music_Jump", 4)
 			$SND_JUMP.play()
 			was_jumping = true
-			is_stealth = false
+			if is_stealth:
+				is_stealth = false
+				stealth_tween.kill()
+				stealth_tween = create_tween().set_trans(Tween.TRANS_SINE)
+				stealth_tween.tween_property(self, "head_center", 1.2, 0.3 / 1.1 * (1.2 - head_center))
 			velocity.y = 90
 		else:
 			velocity.y = 0
 			
-		if Input.is_action_just_pressed("stealth"):
-			is_stealth = !is_stealth
+			if Input.is_action_just_pressed("stealth"):
+				is_stealth = !is_stealth
+				if stealth_tween != null:
+					stealth_tween.kill()
+				stealth_tween = create_tween().set_trans(Tween.TRANS_SINE)
+				var head_center_target = 0.1 if is_stealth else 1.2
+				stealth_tween.tween_property(self, "head_center", head_center_target, 0.3 / 1.1 * abs(head_center_target - head_center))
 		
 	else:
 		velocity.y -= gravity * delta
@@ -81,9 +96,9 @@ func _physics_process(delta):
 	
 	# Changes the position of the head based on is_stealth
 	if is_stealth:
-		$Head.position.y = 0.1 + sin(head_phase) * 0.2
+		$Head.position.y = head_center + sin(head_phase) * 0.2
 	else: 
-		$Head.position.y = 1.2 + sin(head_phase) * 0.2
+		$Head.position.y = head_center + sin(head_phase) * 0.2
 		
 	#print($Head.position.y)
 	
@@ -168,22 +183,22 @@ func _input(event):
 		rotate_y(-event.relative.x * MOUSE_SENSITIVITY)
 
 func slash():
-	if tween != null and tween.is_running():
+	if slash_tween != null and slash_tween.is_running():
 		return
 	
 	$SND_SLASH.play()
 	
-	tween = create_tween().set_parallel()
+	slash_tween = create_tween().set_parallel()
 	
-	tween.tween_property($Head/Camera3D/Hand1, "rotation:y", deg_to_rad(101.9 - 35), 0.1)
-	tween.tween_property($Head/Camera3D/Hand1, "rotation:z", deg_to_rad(-122.6 - 80), 0.1)
-	tween.tween_property($Head/Camera3D/Hand2, "rotation:y", deg_to_rad(78.1 + 35), 0.1)
-	tween.tween_property($Head/Camera3D/Hand2, "rotation:z", deg_to_rad(57.4 - 80), 0.1)
+	slash_tween.tween_property($Head/Camera3D/Hand1, "rotation:y", deg_to_rad(101.9 - 35), 0.1)
+	slash_tween.tween_property($Head/Camera3D/Hand1, "rotation:z", deg_to_rad(-122.6 - 80), 0.1)
+	slash_tween.tween_property($Head/Camera3D/Hand2, "rotation:y", deg_to_rad(78.1 + 35), 0.1)
+	slash_tween.tween_property($Head/Camera3D/Hand2, "rotation:z", deg_to_rad(57.4 - 80), 0.1)
 	
-	tween.chain().tween_property($Head/Camera3D/Hand1, "rotation:y", deg_to_rad(101.9), 0.2)
-	tween.tween_property($Head/Camera3D/Hand1, "rotation:z", deg_to_rad(-122.6), 0.2)
-	tween.tween_property($Head/Camera3D/Hand2, "rotation:y", deg_to_rad(78.1), 0.2)
-	tween.tween_property($Head/Camera3D/Hand2, "rotation:z", deg_to_rad(57.4), 0.2)
+	slash_tween.chain().tween_property($Head/Camera3D/Hand1, "rotation:y", deg_to_rad(101.9), 0.2)
+	slash_tween.tween_property($Head/Camera3D/Hand1, "rotation:z", deg_to_rad(-122.6), 0.2)
+	slash_tween.tween_property($Head/Camera3D/Hand2, "rotation:y", deg_to_rad(78.1), 0.2)
+	slash_tween.tween_property($Head/Camera3D/Hand2, "rotation:z", deg_to_rad(57.4), 0.2)
 	
 	for body in $SlashArea.get_overlapping_bodies():
 		body.hit()
