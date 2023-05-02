@@ -2,10 +2,7 @@ extends RigidBody3D
 
 @export var player: Node
 
-var shoot_tween
 var health = 3
-var is_shooting = false
-var getup_tween
 
 const UNAWARE = 0
 const SURPRISED = 1
@@ -13,6 +10,11 @@ const SHOOTING = 2
 const RECOVERING = 3
 const SEARCHING = 4
 const STANDUP = 6
+
+
+const min_aim_time = 1.5
+const max_aim_time = 3.0
+const hit_chance = 0.5
 
 var state = UNAWARE
 
@@ -65,22 +67,11 @@ func can_shoot_player():
 	return false
 
 func start_shooting():
-	if not is_shooting:
-		
-		shoot_tween = create_tween().set_process_mode(Tween.TWEEN_PROCESS_PHYSICS)
-
-		shoot_tween.tween_property($Gun, "rotation:x", -0.5 * PI, 1 - $Gun.rotation.x / (-0.25 * PI) * randf_range(0.9, 1.1))
-		shoot_tween.tween_callback(shoot).set_delay(0.5)
-		is_shooting = true
+	if $Aim.is_stopped():
+		$Aim.start(randf_range(min_aim_time, max_aim_time))
 
 func stop_shooting():
-	
-	if shoot_tween != null:
-		shoot_tween.kill()
-	# shoot_tween = create_tween().set_process_mode(Tween.TWEEN_PROCESS_PHYSICS)
-	# shoot_tween.tween_property($Gun, "rotation:x", 0, $Gun.rotation.x / (-0.25 * PI))
-	$Gun.rotation.x = 0
-	is_shooting = false
+	$Aim.stop()
 
 func _physics_process(delta):
 	var dist = $RayCast3D.global_position.distance_to(player.global_position)
@@ -142,25 +133,15 @@ func rotate_to_target(delta):
 		rotation.y -= d
 
 func shoot():
-	$Gun/SND_SHOOT.play()
+	$SND_SHOOT.play()
 	
-	if randf() < 0.25:
+	if randf() < hit_chance:
 		# play gunshot sound and hurt player
 		player.hit()
 		camera_3d.shake(0.5)
 	else:
 		player.miss()
 
-	shoot_tween = create_tween().set_process_mode(Tween.TWEEN_PROCESS_PHYSICS)
-
-	shoot_tween.tween_property($Gun, "rotation:x", -0.25 * PI, 0.1)
-	shoot_tween.tween_callback(shoot_again).set_delay(randf_range(0.8, 1.3))
-
-func shoot_again():
-	shoot_tween = create_tween().set_process_mode(Tween.TWEEN_PROCESS_PHYSICS)
-	
-	shoot_tween.tween_property($Gun, "rotation:x", -0.5 * PI, 0.5)
-	shoot_tween.tween_callback(shoot).set_delay(0.5)
 
 func hit():
 	# play screaming sound and emit blood particles
@@ -179,11 +160,6 @@ func hit():
 	state = RECOVERING
 
 	stop_shooting()
-	# if shoot_tween != null:
-	# 	shoot_tween.kill()
-	# $Gun.rotation.x = 0.1
-	if getup_tween:
-		getup_tween.kill()
 	
 	if health > 0:
 		$GetUp.start()
@@ -191,9 +167,6 @@ func hit():
 		var hit_tween = create_tween()
 		hit_tween.parallel().tween_property(%HumanModel, "transparency", 1, 2)
 		hit_tween.tween_callback(queue_free)
-		
-		if shoot_tween != null:
-			shoot_tween.kill()
 		
 		set_physics_process(false)
 		remove_from_group("humans")
