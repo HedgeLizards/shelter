@@ -45,7 +45,7 @@ func _ready():
 
 func can_see_player():
 	var dist = $RayCast3D.global_position.distance_to(player.global_position)
-	if dist <= $Body/Armature/Skeleton3D/BoneAttachment3D/rifle2/SpotLight3D.spot_range:
+	if dist <= %Rifle/SpotLight3D.spot_range:
 		if $RayCast3D.global_position.direction_to(player.global_position).dot(transform.basis.z) < -0.3:
 			$RayCast3D.target_position = (player.global_position - $RayCast3D.global_position).rotated(Vector3.UP, -rotation.y)
 			$RayCast3D.force_raycast_update()
@@ -56,7 +56,7 @@ func can_see_player():
 
 func can_shoot_player():
 	var dist = $RayCast3D.global_position.distance_to(player.global_position)
-	if dist <= $Body/Armature/Skeleton3D/BoneAttachment3D/rifle2/SpotLight3D.spot_range:
+	if dist <= %Rifle/SpotLight3D.spot_range:
 		if $RayCast3D.global_position.direction_to(player.global_position).dot(transform.basis.z) < -0.6:
 			$RayCast3D.target_position = (player.global_position - $RayCast3D.global_position).rotated(Vector3.UP, -rotation.y)
 			$RayCast3D.force_raycast_update()
@@ -103,7 +103,7 @@ func _physics_process(delta):
 		if rotation.z < 0:
 			rotation.z = min(rotation.z + delta * PI/2, 0)
 	if state == UNAWARE:
-		$HumanAnimationPlayer.play("hu_anims/idle")
+		play_animation("hu_anims/idle")
 		stop_shooting()
 		if dist < 3:
 			state = SHOOTING
@@ -115,8 +115,8 @@ func _physics_process(delta):
 			return
 	
 	if state == SHOOTING:
-		$HumanAnimationPlayer.play("hu_anims/crouch_aim")
-		if dist > $Body/Armature/Skeleton3D/BoneAttachment3D/rifle2/SpotLight3D.spot_range*1.5:
+		play_animation("hu_anims/crouch_aim")
+		if dist > %Rifle/SpotLight3D.spot_range*1.5:
 			state = SEARCHING
 			$Searching.start()
 			return
@@ -170,6 +170,7 @@ func hit():
 	health -= 1
 	
 	freeze = false
+	# %Skeleton.physical_bones_start_simulation()
 	
 	var dir = player.position.direction_to(position)
 	dir.y = 0.8
@@ -201,12 +202,7 @@ func hit():
 
 func _on_get_up_timeout():
 	freeze = true
-	# rotation = Vector3(0, rotation.y, 0)
-#	position.y += 2
-#	getup_tween = create_tween()
-#	getup_tween.tween_property(self, "rotation:x", 0, 1)
-#	getup_tween.tween_property(self, "rotation:z", 0, 1)
-#	getup_tween.tween_callback(func(): state = SEARCHING)
+	# %Skeleton.physical_bones_stop_simulation()
 	state = STANDUP
 
 
@@ -232,3 +228,6 @@ func _on_searching_timeout():
 		
 func is_engaged():
 	return state == SHOOTING or state == RECOVERING or state == STANDUP
+
+func play_animation(name):
+	$HumanAnimationPlayer.play(name, 1)
